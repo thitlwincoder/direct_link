@@ -57,6 +57,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.5"
+  cupertino_icons:
+    dependency: "direct main"
+    description:
+      name: cupertino_icons
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.3"
+  direct_link:
+    dependency: "direct main"
+    description:
+      path: ".."
+      relative: true
+    source: path
+    version: "0.0.1"
   fake_async:
     dependency: transitive
     description:
@@ -83,6 +97,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_json_widget:
+    dependency: "direct main"
+    description:
+      name: flutter_json_widget
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -199,7 +220,7 @@ packages:
     source: hosted
     version: "3.0.13"
   requests:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: requests
       url: "https://pub.dartlang.org"
