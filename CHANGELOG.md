@@ -1,3 +1,5 @@
-## [0.0.1] - TODO: Add release date.
+## [0.0.1] - 2020-10-01
 
-* TODO: Describe initial release.
+Initial Version of the library.
+* Includes facebook site
+

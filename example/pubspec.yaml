@@ -1,7 +1,7 @@
 name: example
 description: Direct Link Example
 
-publish_to: 'none'
+publish_to: direct_link
 
 version: 1.0.0+1
 

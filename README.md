@@ -1,14 +1,41 @@
 # direct_link
 
-Direct Link Package
+Direct Link Extractor From URL
+
+## Support Sites
+
+* Facebook
 
 ## Getting Started
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+In the `pubspec.yaml` of your flutter project, add the following dependency:
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+```yaml
+dependencies:
+  ...
+  direct_link:
+```
+
+Next we need to install this
+
+```sh
+# Dart
+pub get
+
+# Flutter
+flutter packages get
+```
+
+In your library add the following import:
+
+```dart
+import 'package:direct_link/direct_link.dart';
+```
+
+## Usage
+
+Use `check` class to get json data
+
+```dart
+var check = await DirectLink.check(url); // add your url
+```
