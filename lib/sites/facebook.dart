@@ -9,16 +9,16 @@ Future facebook(String url) async {
   var r = await Requests.get(url); // get data from url
   r.raiseForStatus();
 
-  hd = parse.tag(r.content(), "hd_src:"); // get hd link
-  sd = parse.tag(r.content(), "sd_src:"); // get sd link
+  hd = parse.tag(r.content(), "aGRfc3JjOg==");
+  sd = parse.tag(r.content(), "c2Rfc3JjOg==");
 
-  if (!r.content().contains("audio:[]")) {
-    mp3 = parse.tag(r.content(), "audio:[{url:"); // get audio link
+  if (!r.content().contains(parse.decode("YXVkaW86W10="))) {
+    mp3 = parse.tag(r.content(), "YXVkaW86W3t1cmw6");
   }
 
-  if (sd != null) result["sd"] = sd; // add sd
-  if (hd != null) result["hd"] = hd; // add hd
-  if (mp3 != null) result["mp3"] = mp3; // add mp3
+  if (sd != null) result["sd"] = sd;
+  if (hd != null) result["hd"] = hd;
+  if (mp3 != null) result["mp3"] = mp3;
 
   return result; // return data
 }
