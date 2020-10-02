@@ -1,15 +1,18 @@
 library direct_link;
 
-import 'package:direct_link/actions/parse.dart';
-
+import 'actions/exp.dart';
 import 'sites/facebook.dart';
+import 'sites/youtube.dart';
 
 class DirectLink {
-  Parse parse = Parse();
+  static check(String url) async {
+    Exp exp = Exp();
 
-  static check(String url) {
-    RegExp fb = RegExp("http(s)?://(www\.)?facebook.([a-z]+)");
-
-    if (fb.hasMatch(url)) return facebook(url);
+    if (exp.fb.hasMatch(url)) // check facebook link
+      return facebook(url); // return data
+    if (exp.yt.hasMatch(url)) // check youtube link
+      return youtube(url);
+    else
+      return null; // if url is not contain in my support sites return null;
   }
 }

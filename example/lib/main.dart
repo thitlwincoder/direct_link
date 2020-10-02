@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:direct_link/direct_link.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_json_widget/flutter_json_widget.dart';
@@ -22,7 +20,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final controller = TextEditingController();
-  String result = "{}";
+  Map<String, dynamic> result = {};
+  bool loading = false;
 
   @override
   void dispose() {
@@ -31,9 +30,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   getLink(String url) async {
-    var check = await DirectLink.check(url);
+    var check = await DirectLink.check(url); // get data from url
+
     setState(() {
-      result = check.toString();
+      loading = false;
+      result = check;
     });
   }
 
@@ -41,23 +42,29 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Direct Link Demo")),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            child: TextField(controller: controller),
-          ),
-          SizedBox(height: 20),
-          RaisedButton(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(20))),
-            color: Colors.blue,
-            child: Text('Get', style: TextStyle(color: Colors.white)),
-            onPressed: () => getLink(controller.text),
-          ),
-          SizedBox(height: 40),
-          JsonViewerWidget(json.decode(result)),
-        ],
+      body: SingleChildScrollView(
+        physics: ClampingScrollPhysics(),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: TextField(controller: controller),
+            ),
+            SizedBox(height: 20),
+            RaisedButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20))),
+              color: Colors.blue,
+              child: Text('Get', style: TextStyle(color: Colors.white)),
+              onPressed: () {
+                setState(() => loading = true);
+                getLink(controller.text);
+              },
+            ),
+            SizedBox(height: 40),
+            loading ? CircularProgressIndicator() : JsonViewerWidget(result),
+          ],
+        ),
       ),
     );
   }
