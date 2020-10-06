@@ -14,4 +14,7 @@ class Exp {
 
   RegExp sf = RegExp(
       "^((https?:)?\/\/)?((?:www)\.)?((solidfiles)\.[^\/,^\.]{2,})\/(v)\/.+");
+
+  RegExp pc = RegExp(
+      "^((https?:)?\/\/)?((u\.pcloud\.link)\/)?((publink)\/)?((show)\?)code=.+");
 }

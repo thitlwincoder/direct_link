@@ -10,6 +10,5 @@ Future<List<SiteModel>> dropbox(String url) async {
 
   result.add(SiteModel(quality: "url", link: link));
 
-  return result;
-  // return data
+  return result; // return data
 }

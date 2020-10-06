@@ -11,26 +11,31 @@ Future<List<SiteModel>> youtube(String url) async {
   var r = await Requests.get(url); // get data from url
   r.raiseForStatus();
 
-  var content = r.content().replaceAll("\\\"", "\"");
-  content = content.replaceAll("\\\\", "");
-  content = content.replaceAll("\\\/", "/");
-  content = content.replaceAll("\"\"", "\"");
-  content = content.replaceAll("\\\\u0026", "&");
-  content = parse.replace(content, "Y29kZWNzPSI=", "Y29kZWNzPQ==");
+  try {
+    var content = r.content().replaceAll("\\\"", "\"");
+    content = content.replaceAll("\\\\", "");
+    content = content.replaceAll("\\\/", "/");
+    content = content.replaceAll("\"\"", "\"");
+    content = content.replaceAll("\\\\u0026", "&");
+    content = parse.replace(content, "Y29kZWNzPSI=", "Y29kZWNzPQ==");
 
-  var start = parse.indexOf(content, "InN0cmVhbWluZ0RhdGEiOg==");
-  var end = parse.indexOf(content, "LCJwbGF5YmFja1RyYWNraW5nIg==");
+    var start = parse.indexOf(content, "InN0cmVhbWluZ0RhdGEiOg==");
+    var end = parse.indexOf(content, "LCJwbGF5YmFja1RyYWNraW5nIg==");
 
-  content = '{' + content.substring(start, end) + '}';
-  var data = json.decode(content.toString());
-  data = data[parse.decode("c3RyZWFtaW5nRGF0YQ==")];
+    content = '{' + content.substring(start, end) + '}';
+    var data = json.decode(content.toString());
+    data = data[parse.decode("c3RyZWFtaW5nRGF0YQ==")];
 
-  for (var item in data[parse.decode("Zm9ybWF0cw==")]) {
-    var label = parse.decode("cXVhbGl0eUxhYmVs");
-    var url = parse.decode("dXJs");
+    for (var item in data[parse.decode("Zm9ybWF0cw==")]) {
+      var label = parse.decode("cXVhbGl0eUxhYmVs");
+      var url = parse.decode("dXJs");
 
-    if (item[label] != null || item[url] != null)
-      result.add(SiteModel(quality: item[label], link: item[url])); // add data
+      if (item[label] != null || item[url] != null)
+        result
+            .add(SiteModel(quality: item[label], link: item[url])); // add data
+    }
+    return result; // return data
+  } catch (_) {
+    return null;
   }
-  return result; // return data
 }

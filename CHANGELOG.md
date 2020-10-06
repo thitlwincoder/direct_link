@@ -1,3 +1,3 @@
-## [0.0.5] - 2020-10-06
+## [0.0.6] - 2020-10-06
 
-* Add SolidFiles Site
+* Add PCloud Site

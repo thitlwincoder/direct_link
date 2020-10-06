@@ -9,9 +9,14 @@ Future<List<SiteModel>> megaup(String url) async {
   var r = await Requests.get(url); // get data from url
   r.raiseForStatus();
 
-  var function = parse.split(r.content(), "ZnVuY3Rpb24gZGlzcGxheSgp");
+  try {
+    var function = parse.split(r.content(), "ZnVuY3Rpb24gZGlzcGxheSgp");
 
-  result.add(SiteModel(quality: "url", link: parse.tag(function, "aHJlZj0=")));
+    result
+        .add(SiteModel(quality: "url", link: parse.tag(function, "aHJlZj0=")));
 
-  return result; // return data
+    return result; // return data
+  } catch (_) {
+    return null;
+  }
 }

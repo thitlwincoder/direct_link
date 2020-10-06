@@ -2,7 +2,7 @@ import 'package:direct_link/actions/parse.dart';
 import 'package:direct_link/models/site_model.dart';
 import 'package:requests/requests.dart';
 
-Future<List<SiteModel>> mediafire(String url) async {
+Future<List<SiteModel>> pcloud(String url) async {
   List<SiteModel> result = [];
   Parse parse = Parse();
 
@@ -10,10 +10,10 @@ Future<List<SiteModel>> mediafire(String url) async {
   r.raiseForStatus();
 
   try {
-    var label =
-        parse.split(r.content(), "YXJpYS1sYWJlbD0iRG93bmxvYWQgZmlsZSI=");
-
-    result.add(SiteModel(quality: "url", link: parse.tag(label, "aHJlZj0=")));
+    result.add(SiteModel(
+      quality: "url",
+      link: parse.tag(r.content(), "ZG93bmxvYWRsaW5rIjo="),
+    ));
 
     return result; // return data
   } catch (_) {

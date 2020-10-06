@@ -9,10 +9,14 @@ Future<List<SiteModel>> solidfiles(String url) async {
   var r = await Requests.get(url); // get data from url
   r.raiseForStatus();
 
-  result.add(SiteModel(
-    quality: "url",
-    link: parse.tag(r.content(), "ZG93bmxvYWRVcmwiOg=="),
-  ));
+  try {
+    result.add(SiteModel(
+      quality: "url",
+      link: parse.tag(r.content(), "ZG93bmxvYWRVcmwiOg=="),
+    ));
 
-  return result; // return data
+    return result; // return data
+  } catch (_) {
+    return null;
+  }
 }

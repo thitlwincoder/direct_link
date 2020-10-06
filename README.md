@@ -12,6 +12,7 @@ You can get a direct link from the URL that my support sites.
 * MegaUp
 * Dropbox
 * SolidFiles
+* PCloud
 
 ## Getting Started
 
