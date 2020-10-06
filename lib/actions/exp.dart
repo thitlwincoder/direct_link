@@ -9,4 +9,6 @@ class Exp {
       RegExp("^((?:https?:)?\/\/)?((?:www)\.)?((mediafire\.com))\/(file)\/.+");
 
   RegExp mup = RegExp("^((https?:)?\/\/)?((megaup\.)[^\\/,^\\.]{2,})\/.+");
+
+  RegExp db = RegExp("^((https?:)?\/\/)?((?:www)\.)?((dropbox\.com))\/.+");
 }

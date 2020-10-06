@@ -10,6 +10,7 @@ You can get a direct link from the URL that my support sites.
 * Youtube
 * MediaFire
 * MegaUp
+* Dropbox
 
 ## Getting Started
 
@@ -39,8 +40,23 @@ import 'package:direct_link/direct_link.dart';
 
 ## Usage
 
-Use `check` class to get json data
+Use `check` class to check your link have been existed my support sites
 
 ```dart
 var check = await DirectLink.check(url); // add your url
+```
+
+### Example
+
+```dart
+if (check == null) {
+    // null condition
+}else{
+     if (check.length > 1) {
+         // multiple links and quality
+     }else{
+         // single link
+     }
+}
+
 ```

@@ -9,7 +9,6 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-  flutter_json_widget: ^1.0.2
   direct_link:
     path: ../
   flutter:

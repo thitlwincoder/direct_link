@@ -1,6 +1,6 @@
 import 'package:direct_link/direct_link.dart';
+import 'package:direct_link/models/site_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_json_widget/flutter_json_widget.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,7 +20,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final controller = TextEditingController();
-  Map<String, dynamic> result = {};
+  List<SiteModel> result;
   bool loading = false;
 
   @override
@@ -30,8 +30,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   getLink(String url) async {
-    var check = await DirectLink.check(url); // get data from url
-
+    var check = await DirectLink.check(
+        "https://www.dropbox.com/s/pheamzqgg05po44/app-debug.apk"); // get data from url
     setState(() {
       loading = false;
       result = check;
@@ -62,7 +62,27 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             SizedBox(height: 40),
-            loading ? CircularProgressIndicator() : JsonViewerWidget(result),
+            loading
+                ? CircularProgressIndicator()
+                : result == null
+                    ? Text("Data Null") // data null condition
+                    : result.length > 1 // multiple links & quality
+                        ? ListView.builder(
+                            shrinkWrap: true,
+                            physics: ClampingScrollPhysics(),
+                            itemCount: result.length,
+                            itemBuilder: (context, index) {
+                              var data = result[index];
+                              return ListTile(
+                                title: Text(data.quality), // get quality
+                                subtitle: Text(data.link), // get link
+                              );
+                            })
+                        : ListTile(
+                            // single link
+                            title: Text(result[0].quality),
+                            subtitle: Text(result[0].link),
+                          ),
           ],
         ),
       ),

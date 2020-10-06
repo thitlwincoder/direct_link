@@ -1,5 +1,5 @@
-## [0.0.3] - 2020-10-02
+## [0.0.4] - 2020-10-06
 
-* Add MediaFire site
-* Add MegaUp site
+* Change Json to List
+* Add Dropbox Site
 

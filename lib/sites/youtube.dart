@@ -1,11 +1,12 @@
 import 'dart:convert';
 
 import 'package:direct_link/actions/parse.dart';
+import 'package:direct_link/models/site_model.dart';
 import 'package:requests/requests.dart';
 
-Future youtube(String url) async {
+Future<List<SiteModel>> youtube(String url) async {
+  List<SiteModel> result = [];
   Parse parse = Parse();
-  Map<String, dynamic> result = {};
 
   var r = await Requests.get(url); // get data from url
   r.raiseForStatus();
@@ -29,8 +30,7 @@ Future youtube(String url) async {
     var url = parse.decode("dXJs");
 
     if (item[label] != null || item[url] != null)
-      result[item[label]] = item[url]; // add data
-
-    return result; // return data
+      result.add(SiteModel(quality: item[label], link: item[url])); // add data
   }
+  return result; // return data
 }
