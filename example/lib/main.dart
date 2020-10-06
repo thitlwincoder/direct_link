@@ -30,8 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   getLink(String url) async {
-    var check = await DirectLink.check(
-        "https://www.dropbox.com/s/pheamzqgg05po44/app-debug.apk"); // get data from url
+    var check = await DirectLink.check(url); // get data from url
     setState(() {
       loading = false;
       result = check;

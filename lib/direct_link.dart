@@ -6,6 +6,7 @@ import 'sites/dropbox.dart';
 import 'sites/facebook.dart';
 import 'sites/mediafire.dart';
 import 'sites/megaup.dart';
+import 'sites/solidfiles.dart';
 import 'sites/youtube.dart';
 
 class DirectLink {
@@ -24,6 +25,8 @@ class DirectLink {
       return megaup(url);
     else if (exp.db.hasMatch(url))
       return dropbox(url);
+    else if (exp.sf.hasMatch(url))
+      return solidfiles(url);
     else
       return null; // if url is not contain in my support sites return null;
   }

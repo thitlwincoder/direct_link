@@ -1,5 +1,3 @@
-## [0.0.4] - 2020-10-06
+## [0.0.5] - 2020-10-06
 
-* Change Json to List
-* Add Dropbox Site
-
+* Add SolidFiles Site
