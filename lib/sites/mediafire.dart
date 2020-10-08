@@ -6,16 +6,20 @@ Future<List<SiteModel>> mediafire(String url) async {
   List<SiteModel> result = [];
   Parse parse = Parse();
 
-  var r = await Requests.get(url); // get data from url
+  // get data from url
+  var r = await Requests.get(url);
   r.raiseForStatus();
 
   try {
+    // get link
     var label =
         parse.split(r.content(), "YXJpYS1sYWJlbD0iRG93bmxvYWQgZmlsZSI=");
 
+    // add data to result list
     result.add(SiteModel(quality: "url", link: parse.tag(label, "aHJlZj0=")));
 
-    return result; // return data
+    // return result list
+    return result;
   } catch (_) {
     return null;
   }

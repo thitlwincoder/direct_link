@@ -10,12 +10,14 @@ Future<List<SiteModel>> pcloud(String url) async {
   r.raiseForStatus();
 
   try {
-    result.add(SiteModel(
-      quality: "url",
-      link: parse.tag(r.content(), "ZG93bmxvYWRsaW5rIjo="),
-    ));
+    // get link
+    var link = parse.tag(r.content(), "ZG93bmxvYWRsaW5rIjo=");
 
-    return result; // return data
+    // add data to result list
+    result.add(SiteModel(quality: "url", link: link));
+
+    // return result list
+    return result;
   } catch (_) {
     return null;
   }

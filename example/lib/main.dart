@@ -79,8 +79,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             })
                         : ListTile(
                             // single link
-                            title: Text(result[0].quality),
-                            subtitle: Text(result[0].link),
+                            title: Text(result[0].quality), // get quality
+                            subtitle: Text(result[0].link), // get link
                           ),
           ],
         ),

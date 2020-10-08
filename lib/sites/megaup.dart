@@ -6,16 +6,22 @@ Future<List<SiteModel>> megaup(String url) async {
   List<SiteModel> result = [];
   Parse parse = Parse();
 
-  var r = await Requests.get(url); // get data from url
+  // get data from url
+  var r = await Requests.get(url);
   r.raiseForStatus();
 
   try {
+    // get function
     var function = parse.split(r.content(), "ZnVuY3Rpb24gZGlzcGxheSgp");
 
-    result
-        .add(SiteModel(quality: "url", link: parse.tag(function, "aHJlZj0=")));
+    // get link
+    var link = parse.tag(function, "aHJlZj0=");
 
-    return result; // return data
+    // add data to result list
+    result.add(SiteModel(quality: "url", link: link));
+
+    // return result list
+    return result;
   } catch (_) {
     return null;
   }

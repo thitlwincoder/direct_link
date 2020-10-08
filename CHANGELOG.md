@@ -1,3 +1,3 @@
-## [0.0.6] - 2020-10-06
+## [0.0.7] - 2020-10-08
 
-* Add PCloud Site
+Support multiple platforms

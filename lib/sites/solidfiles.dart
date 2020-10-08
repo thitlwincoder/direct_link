@@ -6,16 +6,19 @@ Future<List<SiteModel>> solidfiles(String url) async {
   List<SiteModel> result = [];
   Parse parse = Parse();
 
-  var r = await Requests.get(url); // get data from url
+  // get data from url
+  var r = await Requests.get(url);
   r.raiseForStatus();
 
   try {
-    result.add(SiteModel(
-      quality: "url",
-      link: parse.tag(r.content(), "ZG93bmxvYWRVcmwiOg=="),
-    ));
+    // get link
+    var link = parse.tag(r.content(), "ZG93bmxvYWRVcmwiOg==");
 
-    return result; // return data
+    // add data to result list
+    result.add(SiteModel(quality: "url", link: link));
+
+    // return result list
+    return result;
   } catch (_) {
     return null;
   }

@@ -11,26 +11,41 @@ import 'sites/solidfiles.dart';
 import 'sites/youtube.dart';
 
 class DirectLink {
-  const DirectLink();
-
+  // Use check class to check your link is contained in my supported sites
   static Future<List<SiteModel>> check(String url) {
+    // url RegExp format
     Exp exp = Exp();
 
-    if (exp.fb.hasMatch(url)) // check facebook link
+    // check facebook link
+    if (exp.fb.hasMatch(url))
       return facebook(url);
-    else if (exp.yt.hasMatch(url)) // check youtube link
+
+    // check youtube link
+    else if (exp.yt.hasMatch(url))
       return youtube(url);
-    else if (exp.mf.hasMatch(url)) // check mediafire link
+
+    // check mediafire link
+    else if (exp.mf.hasMatch(url))
       return mediafire(url);
-    else if (exp.mup.hasMatch(url)) // check megaup link
+
+    // check megaup link
+    else if (exp.mup.hasMatch(url))
       return megaup(url);
-    else if (exp.db.hasMatch(url)) // check dropbox link
+
+    // check dropbox link
+    else if (exp.db.hasMatch(url))
       return dropbox(url);
-    else if (exp.sf.hasMatch(url)) // check solidfiles link
+
+    // check solidfiles link
+    else if (exp.sf.hasMatch(url))
       return solidfiles(url);
-    else if (exp.pc.hasMatch(url)) // check pcloud link
+
+    // check pcloud link
+    else if (exp.pc.hasMatch(url))
       return pcloud(url);
+
+    // if url is not contain in my support sites return null;
     else
-      return null; // if url is not contain in my support sites return null;
+      return null;
   }
 }

@@ -6,17 +6,25 @@ Future<List<SiteModel>> facebook(String url) async {
   List<SiteModel> result = [];
   Parse parse = Parse();
 
-  var r = await Requests.get(url); // get data from url
+  // get data from url
+  var r = await Requests.get(url);
   r.raiseForStatus();
 
   try {
+    // get hd link
     var hd = parse.tag(r.content(), "aGRfc3JjOg==");
+
+    // get sd link
     var sd = parse.tag(r.content(), "c2Rfc3JjOg==");
 
+    // add sd link to result list
     if (sd != null) result.add(SiteModel(quality: "sd", link: sd));
+
+    // add hd link to result list
     if (hd != null) result.add(SiteModel(quality: "hd", link: hd));
 
-    return result; // return data
+    // return result list
+    return result;
   } catch (_) {
     return null;
   }
