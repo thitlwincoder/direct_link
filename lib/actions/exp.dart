@@ -22,6 +22,9 @@ class Exp {
       "^((https?:)?\/\/)?((?:www)\.)?((solidfiles)\.[^\/,^\.]{2,})\/(v)\/.+");
 
   // pcloud url format
-  RegExp pc = RegExp(
-      "^((https?:)?\/\/)?((u\.pcloud\.link)\/)?((publink)\/)?((show)\?)code=.+");
+  RegExp pc = RegExp("^((?:https?:)?\/\/)?(u\.pcloud\.link).+");
+
+  // dailymotion url format
+  RegExp dm = RegExp(
+      "^.+dailymotion\.com\/(video|hub)\/([^_]+)[^#]*(#video=([^_&]+))?|(dai\.ly\/([^_]+))");
 }

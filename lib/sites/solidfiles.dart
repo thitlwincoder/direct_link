@@ -12,7 +12,7 @@ Future<List<SiteModel>> solidfiles(String url) async {
 
   try {
     // get link
-    var link = parse.tag(r.content(), "ZG93bmxvYWRVcmwiOg==");
+    var link = parse.tag(r.content(), "downloadUrl\":");
 
     // add data to result list
     result.add(SiteModel(quality: "url", link: link));

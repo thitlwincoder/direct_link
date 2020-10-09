@@ -11,7 +11,10 @@ Future<List<SiteModel>> pcloud(String url) async {
 
   try {
     // get link
-    var link = parse.tag(r.content(), "ZG93bmxvYWRsaW5rIjo=");
+    var link = parse.tag(r.content(), "\"downloadlink\": ");
+
+    // replace
+    link = link.replaceAll("\\/", "\/");
 
     // add data to result list
     result.add(SiteModel(quality: "url", link: link));

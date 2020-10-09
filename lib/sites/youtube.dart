@@ -1,12 +1,10 @@
 import 'dart:convert';
 
-import 'package:direct_link/actions/parse.dart';
 import 'package:direct_link/models/site_model.dart';
 import 'package:requests/requests.dart';
 
 Future<List<SiteModel>> youtube(String url) async {
   List<SiteModel> result = [];
-  Parse parse = Parse();
 
   // get data from url
   var r = await Requests.get(url);
@@ -21,13 +19,12 @@ Future<List<SiteModel>> youtube(String url) async {
     content = content.replaceAll("\\\/", "/");
     content = content.replaceAll("\"\"", "\"");
     content = content.replaceAll("\\\\u0026", "&");
-    content = parse.replace(content, "Y29kZWNzPSI=", "Y29kZWNzPQ==");
-
+    content = content.replaceAll("codecs=\"", "codecs=");
     // get start index
-    var start = parse.indexOf(content, "InN0cmVhbWluZ0RhdGEiOg==");
+    var start = content.indexOf("\"streamingData\":");
 
     // get end index
-    var end = parse.indexOf(content, "LCJwbGF5YmFja1RyYWNraW5nIg==");
+    var end = content.indexOf(",\"playbackTracking\"");
 
     // transform to json
     content = '{' + content.substring(start, end) + '}';
@@ -36,14 +33,14 @@ Future<List<SiteModel>> youtube(String url) async {
     var data = json.decode(content.toString());
 
     // get data
-    data = data[parse.decode("c3RyZWFtaW5nRGF0YQ==")];
+    data = data["streamingData"];
 
-    for (var item in data[parse.decode("Zm9ybWF0cw==")]) {
+    for (var item in data["formats"]) {
       // get label
-      var label = parse.decode("cXVhbGl0eUxhYmVs");
+      var label = "qualityLabel";
 
       // get url
-      var url = parse.decode("dXJs");
+      var url = "url";
 
       if (item[label] != null || item[url] != null)
         // add data to result list

@@ -2,6 +2,7 @@ library direct_link;
 
 import 'actions/exp.dart';
 import 'models/site_model.dart';
+import 'sites/dailymotion.dart';
 import 'sites/dropbox.dart';
 import 'sites/facebook.dart';
 import 'sites/mediafire.dart';
@@ -11,7 +12,7 @@ import 'sites/solidfiles.dart';
 import 'sites/youtube.dart';
 
 class DirectLink {
-  // Use check class to check your link is contained in my supported sites
+  // check your link is contained in my supported sites
   static Future<List<SiteModel>> check(String url) {
     // url RegExp format
     Exp exp = Exp();
@@ -43,6 +44,10 @@ class DirectLink {
     // check pcloud link
     else if (exp.pc.hasMatch(url))
       return pcloud(url);
+
+    // check dailymotion link
+    else if (exp.dm.hasMatch(url))
+      return dailymotion(url);
 
     // if url is not contain in my support sites return null;
     else

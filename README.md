@@ -13,6 +13,7 @@ You can get a direct link from the URL that my support sites.
 * Dropbox
 * SolidFiles
 * PCloud
+* DailyMotion
 
 ## Getting Started
 

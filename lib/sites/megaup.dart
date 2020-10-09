@@ -12,10 +12,10 @@ Future<List<SiteModel>> megaup(String url) async {
 
   try {
     // get function
-    var function = parse.split(r.content(), "ZnVuY3Rpb24gZGlzcGxheSgp");
+    var function = r.content().split("function display()")[1];
 
     // get link
-    var link = parse.tag(function, "aHJlZj0=");
+    var link = parse.tag(function, "href=");
 
     // add data to result list
     result.add(SiteModel(quality: "url", link: link));

@@ -12,11 +12,10 @@ Future<List<SiteModel>> mediafire(String url) async {
 
   try {
     // get link
-    var label =
-        parse.split(r.content(), "YXJpYS1sYWJlbD0iRG93bmxvYWQgZmlsZSI=");
+    var label = r.content().split("aria-label=\"Download file\"")[1];
 
     // add data to result list
-    result.add(SiteModel(quality: "url", link: parse.tag(label, "aHJlZj0=")));
+    result.add(SiteModel(quality: "url", link: parse.tag(label, "href=")));
 
     // return result list
     return result;

@@ -12,10 +12,10 @@ Future<List<SiteModel>> facebook(String url) async {
 
   try {
     // get hd link
-    var hd = parse.tag(r.content(), "aGRfc3JjOg==");
+    var hd = parse.tag(r.content(), "hd_src:");
 
     // get sd link
-    var sd = parse.tag(r.content(), "c2Rfc3JjOg==");
+    var sd = parse.tag(r.content(), "sd_src:");
 
     // add sd link to result list
     if (sd != null) result.add(SiteModel(quality: "sd", link: sd));

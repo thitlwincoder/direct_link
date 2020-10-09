@@ -1,3 +1,3 @@
-## [0.0.7] - 2020-10-08
+## [0.0.8] - 2020-10-09
 
-Support multiple platforms
+* Add DailyMotion Site
