@@ -6,20 +6,20 @@ import 'package:requests/requests.dart';
 Future<List<SiteModel>> pornhub(String url) async {
   List<SiteModel> result = [];
 
-  // downloader host
+  /// downloader host
   var host = "https://pornhubsave.com";
 
-  // get data from host
+  /// get data from host
   var r = await Requests.get(host);
   r.raiseForStatus();
 
-  // get header
+  /// get header
   var h = r.headers.toString();
 
-  // get token
+  /// get token
   var token = h.split("csrftoken=")[1].split(";")[0];
 
-  // post data to host
+  /// post data to host
   var p = await Requests.post(
     "$host/result",
     headers: {'Referer': host},
@@ -28,27 +28,25 @@ Future<List<SiteModel>> pornhub(String url) async {
   p.raiseForStatus();
 
   try {
-    // json decode
+    /// json decode
     var data = json.decode(p.content());
 
-    // get quality list
+    /// get quality list
     List quality = data["quality"];
 
-    // quality loop
+    /// quality loop
     quality.forEach((_quality) {
-      // get quality
-      var quality = _quality.substring(0, _quality.length - 1);
-
-      // get link
+      /// get link
       var link = data["s$_quality"];
 
-      if (link != null) result.add(SiteModel(quality: quality, link: link));
+      /// add data to result list
+      if (link != null) result.add(SiteModel(quality: _quality, link: link));
     });
 
-    // list reverse
+    /// list reverse
     result = result.reversed.toList();
 
-    // return result list
+    /// return result list
     return result;
   } catch (_) {
     return null;

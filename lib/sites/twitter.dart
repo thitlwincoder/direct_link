@@ -6,20 +6,20 @@ Future<List<SiteModel>> twitter(String url) async {
   List<SiteModel> result = [];
   Parse parse = Parse();
 
-  // downloader host
+  /// downloader host
   var host = "https://twittervideodownloader.com";
 
-  // get data from host
+  /// get data from host
   var r = await Requests.get(host);
   r.raiseForStatus();
 
-  // get header
+  /// get header
   var h = r.headers.toString();
 
-  // get token
+  /// get token
   var token = h.split("csrftoken=")[1].split(";")[0];
 
-  // post data to host
+  /// post data to host
   var p = await Requests.post(
     "$host/download",
     headers: {'Referer': host},
@@ -28,26 +28,26 @@ Future<List<SiteModel>> twitter(String url) async {
   p.raiseForStatus();
 
   try {
-    // get row list
+    /// get row list
     var row = p.content().split("<div class=\"row\">");
 
-    // row loop
+    /// row loop
     row.skip(1).forEach((_row) {
-      // get href
+      /// get href
       var href = parse.tag(_row, "href=");
 
-      // get quality
+      /// get quality
       var p = _row.split("<p class=\"float-left\">")[1];
       p = parse.string(p, code: "x");
 
-      // add data to result list
-      result.add(SiteModel(quality: p, link: href));
+      /// add data to result list
+      result.add(SiteModel(quality: p + "p", link: href));
     });
 
-    // list reverse
+    /// list reverse
     result = result.reversed.toList();
 
-    // return result list
+    /// return result list
     return result;
   } catch (_) {
     return null;

@@ -8,12 +8,13 @@ You can get a direct link from the URL that my support sites.
 - Twitter
 - Youtube
 - Facebook
+- DailyMotion
 * PCloud
 * MegaUp
 * Dropbox
 * SolidFiles
 * MediaFire
-* DailyMotion
+* Google Drive
 - PornHub
 
 ## Getting Started

@@ -32,6 +32,9 @@ class Exp {
   RegExp tt =
       RegExp("^http(?:s)?:\/\/(?:www\.)?twitter\.com\/([a-zA-Z0-9_]).+");
 
-  // twitter url format
+  // pornhub url format
   RegExp ph = RegExp("((?:https?:)?\/\/)?.+(pornhub).+");
+
+  // gdrive url format
+  RegExp gd = RegExp("((?:https?:)?\/\/)?.+(drive\.google\.com).+");
 }
