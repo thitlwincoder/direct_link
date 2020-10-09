@@ -31,4 +31,7 @@ class Exp {
   // twitter url format
   RegExp tt =
       RegExp("^http(?:s)?:\/\/(?:www\.)?twitter\.com\/([a-zA-Z0-9_]).+");
+
+  // twitter url format
+  RegExp ph = RegExp("((?:https?:)?\/\/)?.+(pornhub).+");
 }

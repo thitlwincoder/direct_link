@@ -8,6 +8,7 @@ import 'sites/facebook.dart';
 import 'sites/mediafire.dart';
 import 'sites/megaup.dart';
 import 'sites/pcloud.dart';
+import 'sites/pornhub.dart';
 import 'sites/solidfiles.dart';
 import 'sites/twitter.dart';
 import 'sites/youtube.dart';
@@ -53,6 +54,10 @@ class DirectLink {
     // check twitter link
     else if (exp.tt.hasMatch(url))
       return twitter(url);
+
+    // check pornhub link
+    else if (exp.ph.hasMatch(url))
+      return pornhub(url);
 
     // if url is not contain in my support sites return null;
     else

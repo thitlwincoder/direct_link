@@ -1,13 +1,13 @@
-import 'package:direct_link/actions/parse.dart';
+import 'dart:convert';
+
 import 'package:direct_link/models/site_model.dart';
 import 'package:requests/requests.dart';
 
-Future<List<SiteModel>> twitter(String url) async {
+Future<List<SiteModel>> pornhub(String url) async {
   List<SiteModel> result = [];
-  Parse parse = Parse();
 
   // downloader host
-  var host = "https://twittervideodownloader.com";
+  var host = "https://pornhubsave.com";
 
   // get data from host
   var r = await Requests.get(host);
@@ -21,27 +21,28 @@ Future<List<SiteModel>> twitter(String url) async {
 
   // post data to host
   var p = await Requests.post(
-    "$host/download",
+    "$host/result",
     headers: {'Referer': host},
-    body: {'csrfmiddlewaretoken': token, "tweet": url},
+    body: {'csrfmiddlewaretoken': token, "url": url},
   );
   p.raiseForStatus();
 
   try {
-    // get row list
-    var row = p.content().split("<div class=\"row\">");
+    // json decode
+    var data = json.decode(p.content());
 
-    // row loop
-    row.skip(1).forEach((_row) {
-      // get href
-      var href = parse.tag(_row, "href=");
+    // get quality list
+    List quality = data["quality"];
 
+    // quality loop
+    quality.forEach((_quality) {
       // get quality
-      var p = _row.split("<p class=\"float-left\">")[1];
-      p = parse.string(p, code: "x");
+      var quality = _quality.substring(0, _quality.length - 1);
 
-      // add data to result list
-      result.add(SiteModel(quality: p, link: href));
+      // get link
+      var link = data["s$_quality"];
+
+      if (link != null) result.add(SiteModel(quality: quality, link: link));
     });
 
     // list reverse
