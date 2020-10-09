@@ -9,6 +9,7 @@ import 'sites/mediafire.dart';
 import 'sites/megaup.dart';
 import 'sites/pcloud.dart';
 import 'sites/solidfiles.dart';
+import 'sites/twitter.dart';
 import 'sites/youtube.dart';
 
 class DirectLink {
@@ -48,6 +49,10 @@ class DirectLink {
     // check dailymotion link
     else if (exp.dm.hasMatch(url))
       return dailymotion(url);
+
+    // check twitter link
+    else if (exp.tt.hasMatch(url))
+      return twitter(url);
 
     // if url is not contain in my support sites return null;
     else

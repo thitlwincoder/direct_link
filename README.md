@@ -14,6 +14,7 @@ You can get a direct link from the URL that my support sites.
 * SolidFiles
 * PCloud
 * DailyMotion
+* Twitter
 
 ## Getting Started
 

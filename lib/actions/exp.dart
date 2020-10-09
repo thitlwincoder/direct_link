@@ -27,4 +27,8 @@ class Exp {
   // dailymotion url format
   RegExp dm = RegExp(
       "^.+dailymotion\.com\/(video|hub)\/([^_]+)[^#]*(#video=([^_&]+))?|(dai\.ly\/([^_]+))");
+
+  // twitter url format
+  RegExp tt =
+      RegExp("^http(?:s)?:\/\/(?:www\.)?twitter\.com\/([a-zA-Z0-9_]).+");
 }

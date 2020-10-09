@@ -9,4 +9,8 @@ class Parse {
 
     return null;
   }
+
+  String string(String value, {String code}) {
+    return value.split(code ?? "<")[0];
+  }
 }
