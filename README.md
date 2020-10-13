@@ -17,6 +17,7 @@ You can get a direct link from the URL that my support sites.
 * Google Drive
 - Xnxx
 - PornHub
+- xHamster
 
 
 ## Getting Started

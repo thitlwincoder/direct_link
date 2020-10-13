@@ -40,4 +40,7 @@ class Exp {
 
   /// xnxx url format
   RegExp xn = RegExp("((?:https?:)?\/\/)?.+(xnxx).+");
+
+  /// xhamster url format
+  RegExp xh = RegExp("((?:https?:)?\/\/)?(xhamster).+");
 }
