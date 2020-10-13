@@ -1,8 +1,8 @@
 name: direct_link
 description: Flutter package for direct link extractor from URL to stream and download directly
-version: 0.1.1
+version: 0.1.2
 author: Thit Lwin <thitlwincoder@gmail.com>
-homepage: https://github.com/thitlwincoder/Direct_Link
+homepage: https://github.com/thitlwincoder/direct_link
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

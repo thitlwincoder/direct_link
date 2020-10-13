@@ -1,5 +1,7 @@
 library direct_link;
 
+import 'package:direct_link/sites/xnxx.dart';
+
 import 'actions/exp.dart';
 import 'models/site_model.dart';
 import 'sites/dailymotion.dart';
@@ -60,9 +62,13 @@ class DirectLink {
     else if (exp.ph.hasMatch(url))
       return pornhub(url);
 
-    /// check pornhub link
+    /// check google drive link
     else if (exp.gd.hasMatch(url))
       return gdrive(url);
+
+    /// check xnxx link
+    else if (exp.xn.hasMatch(url))
+      return xnxx(url);
 
     /// if url is not contain in my support sites return null;
     else

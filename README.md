@@ -15,7 +15,9 @@ You can get a direct link from the URL that my support sites.
 * SolidFiles
 * MediaFire
 * Google Drive
+- Xnxx
 - PornHub
+
 
 ## Getting Started
 

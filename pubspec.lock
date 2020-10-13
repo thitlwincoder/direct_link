@@ -121,6 +121,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.16.1"
+  js:
+    dependency: transitive
+    description:
+      name: js
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.6.3-nullsafety.1"
   logging:
     dependency: transitive
     description:
@@ -323,5 +330,5 @@ packages:
     source: hosted
     version: "0.1.2"
 sdks:
-  dart: ">=2.10.0-110 <=2.11.0-186.0.dev"
+  dart: ">=2.10.0-110 <=2.11.0-207.0.dev"
   flutter: ">=1.17.0 <2.0.0"
