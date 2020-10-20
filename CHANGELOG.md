@@ -1,3 +1,3 @@
-## [0.1.3] - 2020-10-13
+## [0.1.4] - 2020-10-20
 
-* Add xHamster Site
+* Add Vimeo Site

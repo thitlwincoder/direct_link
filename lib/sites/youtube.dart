@@ -37,15 +37,12 @@ Future<List<SiteModel>> youtube(String url) async {
     data = data["streamingData"];
 
     for (var item in data["formats"]) {
-      /// get label
-      var label = "qualityLabel";
-
       /// get url
       var url = "url";
 
-      if (item[label] != null || item[url] != null) {
+      if (item["qualityLabel"] != null || item[url] != null) {
         /// add data to result list
-        result.add(SiteModel(quality: item[label], link: item[url]));
+        result.add(SiteModel(quality: item["qualityLabel"], link: item[url]));
       }
     }
 

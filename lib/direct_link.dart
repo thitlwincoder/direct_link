@@ -12,6 +12,7 @@ import 'sites/pcloud.dart';
 import 'sites/pornhub.dart';
 import 'sites/solidfiles.dart';
 import 'sites/twitter.dart';
+import 'sites/vimeo.dart';
 import 'sites/xhamster.dart';
 import 'sites/xnxx.dart';
 import 'sites/youtube.dart';
@@ -73,6 +74,10 @@ class DirectLink {
     /// check xnxx link
     else if (exp.xh.hasMatch(url))
       return xhamster(url);
+
+    /// check vimeo link
+    else if (exp.vi.hasMatch(url))
+      return vimeo(url);
 
     /// if url is not contain in my support sites return null;
     else

@@ -43,4 +43,7 @@ class Exp {
 
   /// xhamster url format
   RegExp xh = RegExp("((?:https?:)?\/\/)?(xhamster).+");
+
+  /// vimeo url format
+  RegExp vi = RegExp("((?:https?:)?\/\/)?(vimeo).+");
 }

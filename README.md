@@ -5,6 +5,7 @@ For those who want to create a movie and downloader app, this is a useful packag
 You can get a direct link from the URL that my support sites.
 
 ## Support Sites
+- Vimeo
 - Twitter
 - Youtube
 - Facebook
