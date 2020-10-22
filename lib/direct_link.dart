@@ -8,6 +8,7 @@ import 'sites/facebook.dart';
 import 'sites/gdrive.dart';
 import 'sites/mediafire.dart';
 import 'sites/megaup.dart';
+import 'sites/mp4upload.dart';
 import 'sites/pcloud.dart';
 import 'sites/pornhub.dart';
 import 'sites/solidfiles.dart';
@@ -78,6 +79,10 @@ class DirectLink {
     /// check vimeo link
     else if (exp.vi.hasMatch(url))
       return vimeo(url);
+
+    /// check mp4upload link
+    else if (exp.mu.hasMatch(url))
+      return mp4upload(url);
 
     /// if url is not contain in my support sites return null;
     else

@@ -30,8 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   getLink(String url) async {
-    var check = await DirectLink.check(
-        "https://vimeo.com/262526594"); // get data from url
+    var check = await DirectLink.check(url); // get data from url
     setState(() {
       loading = false;
       result = check;

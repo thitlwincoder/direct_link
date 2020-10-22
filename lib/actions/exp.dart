@@ -46,4 +46,8 @@ class Exp {
 
   /// vimeo url format
   RegExp vi = RegExp("((?:https?:)?\/\/)?(vimeo).+");
+
+  /// mp4upload url format
+  RegExp mu =
+      RegExp("((?:https?:)?\/\/)?(www\.)?(mp4upload)\.[^\/,^\.]{2,}\/.+");
 }
