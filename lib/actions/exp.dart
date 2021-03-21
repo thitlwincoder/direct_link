@@ -1,5 +1,5 @@
 class Exp {
-  /// facebook url format
+  /// facebook  url format
   RegExp fb = RegExp(
       "^((https?:)?\/\/)?((?:www|m)\.)?((?:facebook\.com))*\/(video(s)?|watch|story)(\.php?|\/).+\$");
 
