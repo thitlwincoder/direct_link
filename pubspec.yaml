@@ -6,13 +6,10 @@ homepage: https://github.com/thitlwincoder/direct_link
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
-  flutter: ">=1.17.0 <2.0.0"
 
 dependencies:
-  requests: ^3.3.0
   flutter:
     sdk: flutter
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
+  pedantic: ^1.11.0
