@@ -27,8 +27,10 @@ Future<List<SiteModel>> Facebook(String url) async {
       // add link to result
       result.add(SiteModel(quality: 'sd', link: links['sd']));
     }
-  }
 
-  /// return result list
-  return result;
+    /// return result list
+    return result;
+  } else {
+    return Default(url);
+  }
 }

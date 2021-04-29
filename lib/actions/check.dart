@@ -11,6 +11,11 @@ class DirectLink {
       return Facebook(url);
     }
 
+    /// check youtube link
+    if (exp.yt.hasMatch(url)) {
+      return Youtube(url);
+    }
+
     return Default(url);
   }
 }
