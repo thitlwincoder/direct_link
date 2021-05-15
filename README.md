@@ -6,7 +6,6 @@ You can get a direct link from the URL that my support sites.
 
 ## Support Sites
 - Vimeo
-- Twitter
 - Youtube
 - Facebook
 - DailyMotion
@@ -15,10 +14,8 @@ You can get a direct link from the URL that my support sites.
 * Dropbox
 * SolidFiles
 * MediaFire
-* MP4Upload
 * Google Drive
 - Xnxx
-- PornHub
 - xHamster
 
 
@@ -62,11 +59,10 @@ var check = await DirectLink.check(url); // add your url
 if (check == null) {
     // null condition
 }else{
-     if (check.length > 1) {
-         // multiple links and quality
-     }else{
-         // single link
-     }
+    check.forEach((e) {
+      print(e.quality);
+      print(e.link);
+    });
 }
 
 ```

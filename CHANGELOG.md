@@ -1,3 +1,4 @@
-## [0.1.5] - 2020-10-22
+## [0.1.7] - 2020-15-5
 
-* Add MP4Upload Site
+* Remove not working sites.
+* Migrate to Null Safety.
