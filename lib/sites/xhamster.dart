@@ -18,13 +18,13 @@ Future<List<SiteModel>> Xhamster(String url) async {
   List formats = content['formats'] ?? Xhamster(url);
 
   /// formats loop
-  formats.forEach((format) {
+  for (var format in formats) {
     var quality = format['format_id'].split('-')[1];
     var link = format['url'];
 
     /// add data to result list
     result.add(SiteModel(quality: quality, link: link));
-  });
+  }
 
   /// return result list
   return result;

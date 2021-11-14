@@ -6,8 +6,10 @@ You can get a direct link from the URL that my support sites.
 
 ## Support Sites
 - Vimeo
+- IMDB
 - Youtube
 - Facebook
+- Instagram
 - DailyMotion
 * PCloud
 * MegaUp
@@ -50,19 +52,19 @@ import 'package:direct_link/direct_link.dart';
 Use `check` class to check your link have been existed my support sites
 
 ```dart
-var check = await DirectLink.check(url); // add your url
+var check = await DirectLink.check('url'); // add your url
 ```
 
 ### Example
 
 ```dart
 if (check == null) {
-    // null condition
+  // null condition
 }else{
-    check.forEach((e) {
-      print(e.quality);
-      print(e.link);
-    });
+  for (var element in check) {
+    print(element.quality);
+    print(element.link);
+  }
 }
 
 ```

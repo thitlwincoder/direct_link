@@ -8,10 +8,10 @@ Future<List<SiteModel>> PCloud(String url) async {
   var r = await http.get(Uri.parse(url));
 
   /// get link
-  var link = parse.tag(r.body, '\"downloadlink\": ');
+  var link = parse.tag(r.body, '"downloadlink": ');
 
   /// replace
-  link = link!.replaceAll('\\/', '\/');
+  link = link!.replaceAll('\\/', '/');
 
   /// add data to result list
   result.add(SiteModel(quality: 'url', link: link));

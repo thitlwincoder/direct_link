@@ -7,20 +7,20 @@ Future<List<SiteModel>> Youtube(String url) async {
   var r = await http.get(Uri.parse(url));
 
   /// get content
-  var content = r.body.replaceAll('\\\"', '\"');
+  var content = r.body.replaceAll('\\"', '"');
 
   /// content replace
   content = content.replaceAll('\\\\', '');
-  content = content.replaceAll('\\\/', '/');
-  content = content.replaceAll('\"\"', '\"');
+  content = content.replaceAll('\\/', '/');
+  content = content.replaceAll('""', '"');
   content = content.replaceAll('\\\\u0026', '&');
-  content = content.replaceAll('codecs=\"', 'codecs=');
+  content = content.replaceAll('codecs="', 'codecs=');
 
   /// get start index
-  var start = content.indexOf('\"streamingData\":');
+  var start = content.indexOf('"streamingData":');
 
   /// get end index
-  var end = content.indexOf(',\"playbackTracking\"');
+  var end = content.indexOf(',"playbackTracking"');
 
   /// transform to json
   content = '{' + content.substring(start, end) + '}';

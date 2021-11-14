@@ -1,2 +1,6 @@
-include: package:pedantic/analysis_options.yaml
+include: package:lints/recommended.yaml
 
+linter:
+  rules:
+    avoid_relative_lib_imports: false
+    non_constant_identifier_names: false

@@ -1,4 +1,3 @@
-## [0.1.7] - 2020-15-5
+## [0.1.8] - 2021-14-11
 
-* Remove not working sites.
-* Migrate to Null Safety.
+* Add Instagram & IMDB

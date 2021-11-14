@@ -8,7 +8,7 @@ Future<List<SiteModel>> Mediafire(String url) async {
   var r = await http.get(Uri.parse(url));
 
   /// get link
-  var label = r.body.split('aria-label=\"Download file\"')[1];
+  var label = r.body.split('aria-label="Download file"')[1];
 
   /// add data to result list
   result.add(SiteModel(quality: 'url', link: parse.tag(label, 'href=')!));

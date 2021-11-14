@@ -43,7 +43,7 @@ class DirectLink {
 
     /// check solidfile link
     if (exp.sf.hasMatch(url)) {
-      return Solidfiles(url);
+      return SolidFiles(url);
     }
 
     /// check mediafire link
@@ -53,7 +53,7 @@ class DirectLink {
 
     /// check gdrive link
     if (exp.gd.hasMatch(url)) {
-      return Gdrive(url);
+      return GDrive(url);
     }
 
     /// check xnxx link
@@ -64,6 +64,16 @@ class DirectLink {
     /// check xhamster link
     if (exp.xh.hasMatch(url)) {
       return Xhamster(url);
+    }
+
+    /// check instagram link
+    if (exp.inst.hasMatch(url)) {
+      return Instagram(url);
+    }
+
+    /// check imdb link
+    if (exp.imdb.hasMatch(url)) {
+      return IMDB(url);
     }
 
     return null;
