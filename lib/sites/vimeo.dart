@@ -1,45 +1,56 @@
 part of direct_link;
 
-Future<List<SiteModel>> Vimeo(String url) async {
-  var result = <SiteModel>[];
-  var parse = Parse();
+mixin _vimeo {
+  static RegExp pattern = RegExp('((?:https?:)?//)?(vimeo).+');
 
-  /// get data from url
-  var r = await http.get(Uri.parse(url));
+  static Future<List<SiteModel>?> get(String url) async {
+    var result = <SiteModel>[];
 
-  /// get html data
-  var html = r.body.split('clip_page_config = ')[1].split('}};')[0] + '}}';
+    try {
+      /// get data from url
+      var r = await http.get(Uri.parse(url));
 
-  /// json decode
-  var data = json.decode(html);
+      /// get html data
+      var html = r.body.split('clip_page_config = ')[1].split('}};')[0] + '}}';
 
-  /// get config
-  var config = data['player']['config_url'];
+      /// json decode
+      var data = json.decode(html);
 
-  /// get data from config url
-  r = await http.get(Uri.parse('$config'));
+      /// get config
+      var config = data['player']['config_url'];
 
-  /// json decode
-  data = json.decode(r.body);
+      /// get data from config url
+      r = await http.get(Uri.parse('$config'));
 
-  /// get progressive
-  var progressive = data['request']['files']['progressive'];
+      /// json decode
+      data = json.decode(r.body);
 
-  /// list for each
-  progressive.forEach((_progressive) {
-    /// get quality
-    var quality = _progressive['quality'];
+      /// get progressive
+      var progressive = data['request']['files']['progressive'];
 
-    /// get link
-    var link = _progressive['url'];
+      /// list for each
+      progressive.forEach((_progressive) {
+        /// get quality
+        var quality = _progressive['quality'];
 
-    /// add data to result list
-    result.add(SiteModel(quality: '$quality', link: '$link'));
-  });
+        /// get link
+        var link = _progressive['url'];
 
-  /// result list sort by quality
-  result.sort((a, b) => parse.quality(a).compareTo(parse.quality(b)));
+        /// add data to result list
+        result.add(SiteModel(quality: '$quality', link: '$link'));
+      });
 
-  /// return result list
-  return result;
+      /// result list sort by quality
+      result.sort((a, b) => _quality(b).compareTo(_quality(a)));
+
+      /// return result list
+      return result;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  static _quality(SiteModel model) {
+    return int.parse(model.quality.substring(0, model.quality.length - 1));
+  }
 }

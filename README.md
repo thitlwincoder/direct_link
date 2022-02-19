@@ -1,3 +1,8 @@
+[![pub package](https://img.shields.io/pub/v/direct_link.svg?logo=dart&logoColor=00b9fc)](https://pub.dev/packages/direct_link)
+[![Last Commits](https://img.shields.io/github/last-commit/thitlwincoder/direct_link?logo=git&logoColor=white)](https://github.com/thitlwincoder/direct_link/commits/master)
+[![Code size](https://img.shields.io/github/languages/code-size/thitlwincoder/direct_link?logo=github&logoColor=white)](https://github.com/thitlwincoder/direct_link)
+[![License](https://img.shields.io/github/license/thitlwincoder/direct_link?logo=open-source-initiative&logoColor=green)](https://github.com/leisim/thitlwincoder/direct_link/master/LICENSE)
+
 # direct_link
 
 For those who want to create a movie and downloader app, this is a useful package.
@@ -5,21 +10,12 @@ For those who want to create a movie and downloader app, this is a useful packag
 You can get a direct link from the URL that my support sites.
 
 ## Support Sites
+
 - Vimeo
 - IMDB
 - Youtube
 - Facebook
 - Instagram
-- DailyMotion
-* PCloud
-* MegaUp
-* Dropbox
-* SolidFiles
-* MediaFire
-* Google Drive
-- Xnxx
-- xHamster
-
 
 ## Getting Started
 
@@ -52,6 +48,7 @@ import 'package:direct_link/direct_link.dart';
 Use `check` class to check your link have been existed my support sites
 
 ```dart
+
 var check = await DirectLink.check('url'); // add your url
 ```
 
@@ -61,10 +58,10 @@ var check = await DirectLink.check('url'); // add your url
 if (check == null) {
   // null condition
 }else{
-  for (var element in check) {
-    print(element.quality);
-    print(element.link);
-  }
+    for (var element in check!) {
+        print(element.quality);
+        print(element.link);
+    }
 }
 
 ```

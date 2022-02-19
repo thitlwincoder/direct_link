@@ -1,25 +1,36 @@
 library direct_link;
 
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:html/parser.dart';
 import 'package:http/http.dart' as http;
 
-part 'actions/check.dart';
-part 'actions/exp.dart';
-part 'actions/parse.dart';
 part 'models/site_model.dart';
-part 'sites/dailymotion.dart';
-part 'sites/dropbox.dart';
+
 part 'sites/facebook.dart';
-part 'sites/gdrive.dart';
-part 'sites/imdb.dart';
-part 'sites/instagram.dart';
-part 'sites/mediafire.dart';
-part 'sites/megaup.dart';
-part 'sites/pcloud.dart';
-part 'sites/solidfiles.dart';
-part 'sites/vimeo.dart';
-part 'sites/xhamster.dart';
-part 'sites/xnxx.dart';
+
 part 'sites/youtube.dart';
+
+part 'sites/vimeo.dart';
+
+part 'sites/imdb.dart';
+
+part 'sites/instagram.dart';
+
+class DirectLink {
+  static Future<List<SiteModel>?>? check(String url) {
+    if (_facebook.pattern.hasMatch(url)) {
+      return _facebook.get(url);
+    } else if (_youtube.pattern.hasMatch(url)) {
+      return _youtube.get(url);
+    } else if (_vimeo.pattern.hasMatch(url)) {
+      return _vimeo.get(url);
+    } else if (_imdb.pattern.hasMatch(url)) {
+      return _imdb.get(url);
+    } else if (_instagram.pattern.hasMatch(url)) {
+      return _instagram.get(url);
+    }
+    return null;
+  }
+}

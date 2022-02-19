@@ -1,36 +1,39 @@
 part of direct_link;
 
-Future<List<SiteModel>> Facebook(String url) async {
-  var result = <SiteModel>[];
+mixin _facebook {
+  static RegExp pattern = RegExp(
+      r'^((https?:)?\/\/)?((?:www|m|fb)\.)?((((?:facebook\.com)|\.watch).*\/(video(s)?|watch|story)(\.php?|\/))|watch).+');
 
-  var host = 'https://yt1s.com/api/ajaxSearch/facebook';
+  static Future<List<SiteModel>?> get(String url) async {
+    try {
+      var result = <SiteModel>[];
 
-  // post data to host
-  var r = await http.post(Uri.parse(host), body: {'q': url, 'vt': 'facebook'});
+      var host = 'aHR0cHM6Ly9mZG93bi5uZXQvZG93bmxvYWQucGhw';
 
-  // json decode
-  var j = json.decode(r.body);
+      /// post data to host
+      var r = await http.post(
+        Uri.parse(utf8.decode(base64Url.decode(host))),
+        body: {'URLz': url},
+      );
+      var body = parse(r.body);
 
-  // check status is ok
-  if (j['status'] == 'ok') {
-    // get links
-    Map<String, dynamic> links = j['links'];
+      /// check sd included
+      var sd = body.querySelector('a#sdlink');
 
-    // check hd included
-    if (links.containsKey('hd')) {
-      // add link to result
-      result.add(SiteModel(quality: 'hd', link: links['hd']));
+      /// check hd included
+      var hd = body.querySelector('a#hdlink');
+
+      if (hd != null) {
+        result.add(SiteModel(quality: 'hd', link: hd.attributes['href']!));
+      }
+      if (sd != null) {
+        result.add(SiteModel(quality: 'sd', link: sd.attributes['href']!));
+      }
+
+      /// return result list
+      return result;
+    } catch (_) {
+      return null;
     }
-
-    // check sd included
-    if (links.containsKey('sd')) {
-      // add link to result
-      result.add(SiteModel(quality: 'sd', link: links['sd']));
-    }
-
-    /// return result list
-    return result;
-  } else {
-    return result;
   }
 }

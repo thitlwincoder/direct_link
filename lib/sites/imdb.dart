@@ -1,20 +1,34 @@
 part of direct_link;
 
-Future<List<SiteModel>> IMDB(String url) async {
-  var result = <SiteModel>[];
+mixin _imdb {
+  static RegExp pattern = RegExp('(http://www.|https://www.)imdb.com/video/.*');
 
-  var host = 'https://freedownloadvideo.net/wp-json/aio-dl/video-data/';
+  static Future<List<SiteModel>?> get(String url) async {
+    try {
+      var result = <SiteModel>[];
 
-  var r = await http.post(Uri.parse(host), body: {'url': url});
+      var host =
+          'aHR0cHM6Ly9mcmVlZG93bmxvYWR2aWRlby5uZXQvd3AtanNvbi9haW8tZGwvdmlkZW8tZGF0YS8=';
 
-  List medias = json.decode(r.body)['medias'];
+      /// post data to host
+      var r = await http.post(
+        Uri.parse(utf8.decode(base64Url.decode(host))),
+        body: {'url': url},
+      );
 
-  for (var media in medias) {
-    var url = media['url'];
-    var quality = media['quality'];
+      List medias = json.decode(r.body)['medias'];
 
-    result.add(SiteModel(quality: quality, link: url));
+      for (var media in medias) {
+        var url = media['url'];
+        var quality = media['quality'];
+
+        result.add(SiteModel(quality: quality, link: url));
+      }
+
+      /// return result list
+      return result;
+    } catch (_) {
+      return null;
+    }
   }
-
-  return result;
 }

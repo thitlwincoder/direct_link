@@ -1,46 +1,33 @@
 part of direct_link;
 
-Future<List<SiteModel>> Youtube(String url) async {
-  var result = <SiteModel>[];
+mixin _youtube {
+  static RegExp pattern = RegExp(
+      '^((?:https?:)?//)?((?:www|m).)?((?:youtube.com|youtu.be))(/(?:[w-]+?v=|embed/|v/)?)([w-].+)');
 
-  /// get data from url
-  var r = await http.get(Uri.parse(url));
+  static Future<List<SiteModel>?> get(String url) async {
+    var result = <SiteModel>[];
+    var host =
+        'aHR0cHM6Ly9hcGkub25saW5ldmlkZW9jb252ZXJ0ZXIucHJvL2FwaS9jb252ZXJ0';
+    try {
+      var r = await http.post(
+        Uri.parse(utf8.decode(base64Url.decode(host))),
+        body: {'url': url},
+      );
 
-  /// get content
-  var content = r.body.replaceAll('\\"', '"');
+      var j = json.decode(r.body);
 
-  /// content replace
-  content = content.replaceAll('\\\\', '');
-  content = content.replaceAll('\\/', '/');
-  content = content.replaceAll('""', '"');
-  content = content.replaceAll('\\\\u0026', '&');
-  content = content.replaceAll('codecs="', 'codecs=');
-
-  /// get start index
-  var start = content.indexOf('"streamingData":');
-
-  /// get end index
-  var end = content.indexOf(',"playbackTracking"');
-
-  /// transform to json
-  content = '{' + content.substring(start, end) + '}';
-
-  /// json decode
-  var data = json.decode(content.toString());
-
-  /// get data
-  data = data['streamingData'];
-
-  for (var item in data['formats']) {
-    /// get url
-    var url = 'url';
-
-    if (item['qualityLabel'] != null || item[url] != null) {
-      /// add data to result list
-      result.add(SiteModel(quality: item['qualityLabel'], link: item[url]));
+      var list = j['url'];
+      for (var data in list) {
+        var url = data['url'];
+        var type = data['attr']['title'];
+        var noAudio = data['no_audio'];
+        if (!noAudio) {
+          result.add(SiteModel(quality: type, link: url));
+        }
+      }
+      return result;
+    } catch (_) {
+      return null;
     }
   }
-
-  /// return result list
-  return result;
 }

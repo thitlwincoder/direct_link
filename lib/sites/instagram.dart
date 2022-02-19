@@ -1,28 +1,35 @@
 part of direct_link;
 
-Future<List<SiteModel>> Instagram(String url) async {
-  var result = <SiteModel>[];
+mixin _instagram {
+  static RegExp pattern = RegExp(
+      '(?:(?:http|https)://)?(?:www.)?(?:instagram.com|instagr.am|instagr.com)');
 
-  var host = 'https://snapinsta.app';
+  static Future<List<SiteModel>?> get(String url) async {
+    try {
+      var result = <SiteModel>[];
 
-  var r = await http.post(
-    Uri.parse('$host/action.php'),
-    body: {'url': url, 'action': 'post'},
-  );
+      var host = 'aHR0cHM6Ly9pZ2Rvd25sb2FkZXIuY29tL2FqYXg=';
 
-  var body = parse(r.body).body;
+      var r = await http.post(
+        Uri.parse(utf8.decode(base64Url.decode(host))),
+        headers: {'X-Requested-With': 'XMLHttpRequest'},
+        body: {'link': url, 'downloader': 'video'},
+      );
 
-  if (body != null) {
-    var href = body
-        .getElementsByClassName('download-items__btn')
-        .first
-        .getElementsByTagName('a')
-        .first
-        .attributes['href'];
+      var data = json.decode(r.body);
 
-    if (href != null) {
-      result.add(SiteModel(quality: 'auto', link: '$host$href'));
+      if (!data['error']) {
+        var body = parse(data['html']);
+        var href = body
+            .querySelector('.row > div > div > div > a')!
+            .attributes['href']!;
+        result.add(SiteModel(quality: 'normal', link: href));
+        return result;
+      } else {
+        return null;
+      }
+    } catch (_) {
+      return null;
     }
   }
-  return result;
 }
