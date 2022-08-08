@@ -5,11 +5,11 @@ version: 0.1.9
 homepage: https://github.com/thitlwincoder/direct_link
 
 environment:
-  sdk: '>=2.14.4 <3.0.0'
+  sdk: '>=2.17.6 <3.0.0'
 
 dependencies:
   html: ^0.15.0
-  http: ^0.13.4
+  http: ^0.13.5
 
 dev_dependencies:
-  lints: ^1.0.1
+  lints: ^2.0.0

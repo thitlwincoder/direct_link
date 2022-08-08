@@ -11,6 +11,7 @@ mixin _youtube {
     try {
       var r = await http.post(
         Uri.parse(utf8.decode(base64Url.decode(host))),
+        headers: {'X-Requested-With': 'XMLHttpRequest'},
         body: {'url': url},
       );
 

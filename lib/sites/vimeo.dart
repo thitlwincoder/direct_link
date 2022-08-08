@@ -8,10 +8,13 @@ mixin _vimeo {
 
     try {
       /// get data from url
-      var r = await http.get(Uri.parse(url));
+      var r = await http.get(
+        Uri.parse(url),
+        headers: {'X-Requested-With': 'XMLHttpRequest'},
+      );
 
       /// get html data
-      var html = r.body.split('clip_page_config = ')[1].split('}};')[0] + '}}';
+      var html = '${r.body.split('clip_page_config = ')[1].split('}};')[0]}}}';
 
       /// json decode
       var data = json.decode(html);
@@ -29,12 +32,12 @@ mixin _vimeo {
       var progressive = data['request']['files']['progressive'];
 
       /// list for each
-      progressive.forEach((_progressive) {
+      progressive.forEach((progressive) {
         /// get quality
-        var quality = _progressive['quality'];
+        var quality = progressive['quality'];
 
         /// get link
-        var link = _progressive['url'];
+        var link = progressive['url'];
 
         /// add data to result list
         result.add(SiteModel(quality: '$quality', link: '$link'));

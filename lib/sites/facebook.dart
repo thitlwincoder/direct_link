@@ -13,6 +13,7 @@ mixin _facebook {
       /// post data to host
       var r = await http.post(
         Uri.parse(utf8.decode(base64Url.decode(host))),
+        headers: {'X-Requested-With': 'XMLHttpRequest'},
         body: {'URLz': url},
       );
       var body = parse(r.body);
