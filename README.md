@@ -1,8 +1,9 @@
 [![pub package](https://img.shields.io/pub/v/direct_link.svg?logo=dart&logoColor=00b9fc)](https://pub.dev/packages/direct_link)
 [![Last Commits](https://img.shields.io/github/last-commit/thitlwincoder/direct_link?logo=git&logoColor=white)](https://github.com/thitlwincoder/direct_link/commits/master)
-[![Code size](https://img.shields.io/github/languages/code-size/thitlwincoder/direct_link?logo=github&logoColor=white)](https://github.com/thitlwincoder/direct_link)
+[![GitHub repo size](https://img.shields.io/github/repo-size/thitlwincoder/direct_link)](https://github.com/thitlwincoder/direct_link)
 [![License](https://img.shields.io/github/license/thitlwincoder/direct_link?logo=open-source-initiative&logoColor=green)](https://github.com/leisim/thitlwincoder/direct_link/master/LICENSE)
-
+<br>
+[![Uploaded By](https://img.shields.io/badge/uploaded%20by-thitlwincoder-blue)](https://github.com/thitlwincoder)
 # direct_link
 
 For those who want to create a movie and downloader app, this is a useful package.
