@@ -13,8 +13,9 @@ mixin _youtube {
     var script = document.querySelectorAll('script');
     var html = script[18].innerHtml;
     html = html.replaceAll('var ytInitialPlayerResponse = ', '');
-    var lastIndex = html.lastIndexOf(';');
-    html = html.substring(0, lastIndex);
+    var lastIndex = html.lastIndexOf('};');
+    html = '${html.substring(0, lastIndex)}}';
+
     var json = jsonDecode(html);
 
     var streamingData = json['streamingData'];
