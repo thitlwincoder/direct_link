@@ -15,7 +15,7 @@ void main() async {
   // print('-' * 10);
 
   var check =
-      await DirectLink.check('https://www.youtube.com/watch?v=jGBOsnAHyHk');
+      await DirectLink.check('https://www.youtube.com/watch?v=lJkt-g6C0yc');
   print('Youtube');
   print('-' * 10);
   if (check != null) {

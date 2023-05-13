@@ -23,7 +23,7 @@ mixin _youtube {
       result.add(
         SiteModel(
           quality: data['qualityLabel'],
-          link: data['signatureCipher'].split('url=')[1],
+          link: data['signatureCipher']?.split('url=')[1] ?? data['url'],
         ),
       );
     }
