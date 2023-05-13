@@ -6,29 +6,28 @@ mixin _youtube {
 
   static Future<List<SiteModel>?> get(String url) async {
     var result = <SiteModel>[];
-    var host =
-        'aHR0cHM6Ly9hcGkub25saW5ldmlkZW9jb252ZXJ0ZXIucHJvL2FwaS9jb252ZXJ0';
-    try {
-      var r = await http.post(
-        Uri.parse(utf8.decode(base64Url.decode(host))),
-        headers: {'X-Requested-With': 'XMLHttpRequest'},
-        body: {'url': url},
+
+    var r = await http.get(Uri.parse(url));
+    var body = r.body;
+    var document = parse(body);
+    var script = document.querySelectorAll('script');
+    var html = script[18].innerHtml;
+    html = html.replaceAll('var ytInitialPlayerResponse = ', '');
+    var lastIndex = html.lastIndexOf(';');
+    html = html.substring(0, lastIndex);
+    var json = jsonDecode(html);
+
+    var streamingData = json['streamingData'];
+    var formats = streamingData['formats'];
+    for (var data in formats) {
+      result.add(
+        SiteModel(
+          quality: data['qualityLabel'],
+          link: data['signatureCipher'].split('url=')[1],
+        ),
       );
-
-      var j = json.decode(r.body);
-
-      var list = j['url'];
-      for (var data in list) {
-        var url = data['url'];
-        var type = data['attr']['title'];
-        var noAudio = data['no_audio'];
-        if (!noAudio) {
-          result.add(SiteModel(quality: type, link: url));
-        }
-      }
-      return result;
-    } catch (_) {
-      return null;
     }
+
+    return result;
   }
 }
