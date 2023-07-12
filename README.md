@@ -67,3 +67,9 @@ if (check == null) {
 }
 
 ```
+
+## Contribution
+
+Feel free to file an [issue](https://github.com/thitlwincoder/direct_link/issues/new) if you find a problem or make pull requests.
+
+All contributions are welcome :)
