@@ -1,36 +1,29 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 library direct_link;
 
-import 'dart:convert';
-import 'dart:io';
-
+import 'package:html/dom.dart';
 import 'package:html/parser.dart';
-import 'package:http/http.dart' as http;
+import 'package:puppeteer/puppeteer.dart';
 
 part 'models/site_model.dart';
-
-part 'sites/facebook.dart';
-
-part 'sites/youtube.dart';
-
-part 'sites/vimeo.dart';
-
-part 'sites/imdb.dart';
-
-part 'sites/instagram.dart';
+part 'sites/social.dart';
 
 class DirectLink {
-  static Future<List<SiteModel>?>? check(String url) {
-    if (_facebook.pattern.hasMatch(url)) {
-      return _facebook.get(url);
-    } else if (_youtube.pattern.hasMatch(url)) {
-      return _youtube.get(url);
-    } else if (_vimeo.pattern.hasMatch(url)) {
-      return _vimeo.get(url);
-    } else if (_imdb.pattern.hasMatch(url)) {
-      return _imdb.get(url);
-    } else if (_instagram.pattern.hasMatch(url)) {
-      return _instagram.get(url);
-    }
-    return null;
+  // puppeteer executablePath
+  final String? executablePath;
+
+  DirectLink({
+    this.executablePath,
+  });
+
+  Future<List<SiteModel>?>? check(
+    String url, {
+    Duration? timeout,
+  }) {
+    return _social.get(
+      url: url,
+      timeout: timeout,
+      executablePath: executablePath,
+    );
   }
 }
