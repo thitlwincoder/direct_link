@@ -1,6 +1,6 @@
 name: direct_link
 description: Dart package for direct link extractor from URL to stream and download directly.
-version: 0.1.9
+version: 0.2.0
 homepage: https://github.com/thitlwincoder/direct_link
 
 environment:

@@ -1,3 +1,8 @@
+## 0.2.0
+
++ Fixed not working sites & add more sites
++ Add `type` variable in `site_model`
+
 ## 0.1.9
 
 + Remove & Update not working sites

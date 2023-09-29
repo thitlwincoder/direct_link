@@ -13,11 +13,17 @@ You can get a direct link from the URL that my support sites.
 
 ## Support Sites
 
-- Vimeo
-- IMDB
-- Youtube
 - Facebook
 - Instagram
+- Youtube
+- Twitter
+- Dailymotion
+- Vimeo
+- VK
+- SoundCloud
+- Tiktok
+- Reddit
+- Threads
 
 ## Getting Started
 
@@ -26,7 +32,7 @@ In the `pubspec.yaml` of your flutter project, add the following dependency:
 ```yaml
 dependencies:
   ...
-  direct_link:
+  direct_link: latest
 ```
 
 Next we need to install this
@@ -50,8 +56,9 @@ import 'package:direct_link/direct_link.dart';
 Use `check` class to check your link have been existed my support sites
 
 ```dart
+var directLink = DirectLink();
 
-var check = await DirectLink.check('url'); // add your url
+var check = await directLink.check('url'); // add your url
 ```
 
 ### Example
@@ -62,6 +69,7 @@ if (check == null) {
 }else{
     for (var element in check!) {
         print(element.quality);
+        print(element.type);
         print(element.link);
     }
 }
