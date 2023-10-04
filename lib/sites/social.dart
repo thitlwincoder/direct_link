@@ -1,13 +1,11 @@
 part of direct_link;
 
 mixin _social {
-  static Future<List<SiteModel>?> get({
+  static Future<SiteModel> get({
     required String url,
     String? executablePath,
     Duration? timeout,
   }) async {
-    var result = <SiteModel>[];
-
     var browser = await puppeteer.launch(
       executablePath: executablePath,
       timeout: timeout,
@@ -19,34 +17,49 @@ mixin _social {
     await page.type('#sf_url', url);
     await page.click('#sf_submit');
 
-    var d = await page.waitForSelector('.info-box');
+    await page.waitForSelector('.info-box');
 
-    var content = await d!.page.content;
+    var content = await page.content;
     await browser.close();
 
     var body = parse(content);
-    var linkGroup = body.querySelectorAll('.link-group a');
+
+    String? thumbnail =
+        body.querySelector(".media-result .clip img")?.attributes['src'];
+
+    var info = body.querySelector('.info-box')!;
+
+    String? title = info.querySelector(".title")?.text;
+    String? duration = info.querySelector(".duration")?.text;
+
+    var linkGroup = info.querySelectorAll('.link-group a');
+
+    var links = <Link>[];
 
     if (linkGroup.isNotEmpty) {
       for (var e in linkGroup) {
-        result.add(parseModel(e));
+        links.add(parseModel(e));
       }
-
-      return result;
     }
 
-    var single = body.querySelector('.def-btn-box a');
-    if (single == null) return result;
+    if (links.isEmpty) {
+      var single = body.querySelector('.def-btn-box a');
+      if (single != null) links.add(parseModel(single));
+    }
 
-    result.add(parseModel(single));
-    return result;
+    return SiteModel(
+      title: title,
+      thumbnail: thumbnail,
+      duration: duration,
+      links: links,
+    );
   }
 
-  static SiteModel parseModel(Element e) {
+  static Link parseModel(Element e) {
     var attr = e.attributes;
     var quality = e.querySelector('span')?.text ?? e.text;
 
-    return SiteModel(
+    return Link(
       quality: quality,
       type: attr['data-type'],
       link: attr['href']!,

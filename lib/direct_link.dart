@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 library direct_link;
 
 import 'package:html/dom.dart';
@@ -16,7 +15,7 @@ class DirectLink {
     this.executablePath,
   });
 
-  Future<List<SiteModel>?>? check(
+  Future<SiteModel?> check(
     String url, {
     Duration? timeout,
   }) {

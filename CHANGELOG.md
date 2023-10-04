@@ -1,3 +1,7 @@
+## 0.2.1
+
++ Add `title`, `thumbnail` and `duration` variable in `site_model`
+
 ## 0.2.0
 
 + Fixed not working sites & add more sites

@@ -11,7 +11,7 @@ For those who want to create a movie and downloader app, this is a useful packag
 
 You can get a direct link from the URL that my support sites.
 
-## Support Sites
+## Support Websites
 
 - Facebook
 - Instagram
@@ -58,20 +58,21 @@ Use `check` class to check your link have been existed my support sites
 ```dart
 var directLink = DirectLink();
 
-var check = await directLink.check('url'); // add your url
+var data = await directLink.check('url'); // add your url
 ```
 
 ### Example
 
 ```dart
-if (check == null) {
-  // null condition
-}else{
-    for (var element in check!) {
-        print(element.quality);
-        print(element.type);
-        print(element.link);
-    }
+if (data != null) {
+  print(data.title);
+  print(data.thumbnail);
+  print(data.duration);
+  for (var e in data.links!) {
+    print(e.type);
+    print(e.quality);
+    print('-' * 20);
+  }
 }
 
 ```
