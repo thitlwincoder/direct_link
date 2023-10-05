@@ -1,5 +1,5 @@
 import 'package:direct_link/direct_link.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   var directLink = DirectLink();
