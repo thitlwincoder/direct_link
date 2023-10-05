@@ -61,6 +61,7 @@ if (data != null) {
   for (var e in data.links!) {
     print(e.type);
     print(e.quality);
+    print(e.link);
     print('-' * 20);
   }
 }
