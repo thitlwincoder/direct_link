@@ -1,3 +1,7 @@
+## 0.2.2
+
+- Add support for `android` & `ios` platforms
+
 ## 0.2.1
 
 + Add `title`, `thumbnail` and `duration` variable in `site_model`

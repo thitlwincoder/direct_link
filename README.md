@@ -35,16 +35,6 @@ dependencies:
   direct_link: latest
 ```
 
-Next we need to install this
-
-```sh
-# Dart
-pub get
-
-# Flutter
-flutter packages get
-```
-
 In your library add the following import:
 
 ```dart
