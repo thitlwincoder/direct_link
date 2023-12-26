@@ -1,4 +1,4 @@
-part of direct_link;
+part of '../direct_link.dart';
 
 mixin _social {
   static Future<SiteModel?> get({
@@ -6,18 +6,20 @@ mixin _social {
     String? executablePath,
     Duration? timeout,
   }) async {
+    if (kIsWeb) return _getWithInAppWebView(url: url);
+
     if (Platform.isAndroid || Platform.isIOS) {
-      return _getMobile(url: url);
+      return _getWithInAppWebView(url: url);
     }
 
-    return _getDesktop(
+    return _getWithPuppeteer(
       url: url,
-      executablePath: executablePath,
       timeout: timeout,
+      executablePath: executablePath,
     );
   }
 
-  static Future<SiteModel> _getDesktop({
+  static Future<SiteModel> _getWithPuppeteer({
     required String url,
     String? executablePath,
     Duration? timeout,
@@ -33,7 +35,7 @@ mixin _social {
     await page.type('#sf_url', url);
     await page.click('#sf_submit');
 
-    await page.waitForSelector('.info-box');
+    await page.waitForSelector('#sf_result > .media-result');
 
     var content = await page.content;
     await browser.close();
@@ -41,18 +43,17 @@ mixin _social {
     return _parseContent(content);
   }
 
-  static Future<SiteModel?> _getMobile({required String url}) async {
+  static Future<SiteModel?> _getWithInAppWebView({required String url}) async {
     final Completer<SiteModel> model = Completer<SiteModel>();
 
     HeadlessInAppWebView(
-      initialOptions: InAppWebViewGroupOptions(
-        crossPlatform: InAppWebViewOptions(
-          useOnLoadResource: true,
-          javaScriptCanOpenWindowsAutomatically: true,
-          mediaPlaybackRequiresUserGesture: false,
-        ),
+      initialSettings: InAppWebViewSettings(
+        useOnLoadResource: true,
+        isInspectable: kDebugMode,
+        mediaPlaybackRequiresUserGesture: false,
+        javaScriptCanOpenWindowsAutomatically: true,
       ),
-      initialUrlRequest: URLRequest(url: Uri.parse('https://en.savefrom.net')),
+      initialUrlRequest: URLRequest(url: WebUri('https://en.savefrom.net')),
       onLoadStop: (controller, uri) async {
         await controller.evaluateJavascript(source: '''
           document.querySelector('#sf_url').value = '$url'
@@ -62,6 +63,7 @@ mixin _social {
           Duration(seconds: 3),
           () async {
             var content = await controller.getHtml();
+            print('content: $content');
             return _parseContent(content);
           },
         );
@@ -80,8 +82,8 @@ mixin _social {
 
     return Link(
       quality: quality,
-      type: attr['data-type'],
       link: attr['href']!,
+      type: attr['data-type'],
     );
   }
 
@@ -113,9 +115,9 @@ mixin _social {
 
     return SiteModel(
       title: title,
-      thumbnail: thumbnail,
-      duration: duration,
       links: links,
+      duration: duration,
+      thumbnail: thumbnail,
     );
   }
 }

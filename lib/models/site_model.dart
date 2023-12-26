@@ -12,6 +12,15 @@ class SiteModel {
     required this.duration,
     required this.links,
   });
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'title': title,
+      'thumbnail': thumbnail,
+      'duration': duration,
+      'links': links?.map((x) => x.toJson()).toList(),
+    };
+  }
 }
 
 class Link {
@@ -24,4 +33,10 @@ class Link {
     required this.link,
     required this.type,
   });
+
+  Map<String, dynamic> toJson() => {
+        'quality': quality,
+        'link': link,
+        'type': type,
+      };
 }
