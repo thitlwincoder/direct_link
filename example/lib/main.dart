@@ -51,11 +51,14 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<void> onPressed() async {
+    log('Checking');
+
     var directLink = DirectLink();
 
-    var url = 'https://www.facebook.com/watch/?v=336069382196510';
+    var url = 'https://vimeo.com/336812686';
 
-    var model = await directLink.check(url);
+    var model =
+        await directLink.check(url, timeout: const Duration(seconds: 10));
 
     if (model == null) {
       return log('model is null');
