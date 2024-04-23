@@ -30,12 +30,15 @@ mixin _social {
     );
     var page = await browser.newPage();
 
-    await page.goto('https://en.savefrom.net', wait: Until.networkIdle);
+    await page.goto('https://en.savefrom.net/', wait: Until.networkIdle);
 
     await page.type('#sf_url', url);
     await page.click('#sf_submit');
 
-    await page.waitForSelector('#sf_result > .media-result');
+    await page.waitForSelector(
+      '#sf_result > .media-result',
+      timeout: Duration(seconds: 10),
+    );
 
     var content = await page.content;
     await browser.close();
@@ -53,17 +56,17 @@ mixin _social {
         mediaPlaybackRequiresUserGesture: false,
         javaScriptCanOpenWindowsAutomatically: true,
       ),
-      initialUrlRequest: URLRequest(url: WebUri('https://en.savefrom.net')),
+      initialUrlRequest: URLRequest(url: WebUri('https://en.savefrom.net/')),
       onLoadStop: (controller, uri) async {
         await controller.evaluateJavascript(source: '''
           document.querySelector('#sf_url').value = '$url'
           document.querySelector('#sf_submit').click()
         ''');
+
         var data = await Future.delayed(
-          Duration(seconds: 3),
+          Duration(seconds: 10),
           () async {
             var content = await controller.getHtml();
-            print('content: $content');
             return _parseContent(content);
           },
         );
@@ -89,6 +92,9 @@ mixin _social {
 
   static SiteModel _parseContent(String? content) {
     var body = parse(content);
+
+    var result = body.querySelector('.media-result')?.innerHtml;
+    log('result: $result');
 
     String? thumbnail =
         body.querySelector(".media-result .clip img")?.attributes['src'];

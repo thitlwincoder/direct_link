@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     var directLink = DirectLink();
 
-    var url = 'https://vimeo.com/336812686';
+    var url = 'https://www.youtube.com/watch?v=DCpdEg7drxo&list=RDDCpdEg7drxo&start_radio=1';
 
     var model =
         await directLink.check(url, timeout: const Duration(seconds: 10));

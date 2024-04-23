@@ -1,4 +1,4 @@
-part of direct_link;
+part of '../direct_link.dart';
 
 class SiteModel {
   final String? title;
