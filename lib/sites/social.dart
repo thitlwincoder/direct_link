@@ -93,9 +93,6 @@ mixin _social {
   static SiteModel _parseContent(String? content) {
     var body = parse(content);
 
-    var result = body.querySelector('.media-result')?.innerHtml;
-    log('result: $result');
-
     String? thumbnail =
         body.querySelector(".media-result .clip img")?.attributes['src'];
 
