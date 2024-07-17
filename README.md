@@ -27,7 +27,7 @@ You can get a direct link from the URL that my support sites.
 
 ## Screenshot
 
-<img src="screenshots/Screenshot_1721194850.png" alt="Screenshot" width="200"/>
+<img src="https://github.com/thitlwincoder/direct_link/blob/master/screenshots/Screenshot_1721194850.png" alt="Screenshot" width="200"/>
 
 
 ## Getting Started
