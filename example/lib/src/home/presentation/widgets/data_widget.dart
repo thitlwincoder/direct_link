@@ -3,7 +3,6 @@ import 'package:direct_link/direct_link.dart';
 import 'package:example/src/home/presentation/widgets/quality_item.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
 
 class DataWidget extends StatefulWidget {
   const DataWidget(this.data, {super.key});
@@ -144,6 +143,10 @@ class _DataWidgetState extends State<DataWidget> {
 
     if (dir == null) return;
 
-    await FlutterDownloader.enqueue(url: url, savedDir: dir);
+    await DirectLink().download(
+      url: url,
+      savedDir: dir,
+      fileName: widget.data?.title,
+    );
   }
 }

@@ -1,34 +1,45 @@
 library direct_link;
 
-import 'dart:async';
-import 'dart:developer';
-import 'dart:io';
+import 'package:direct_link/direct_link_impl.dart';
+import 'package:easy_downloader/easy_downloader.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:html/dom.dart';
-import 'package:html/parser.dart';
-import 'package:puppeteer/puppeteer.dart';
+export 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 part 'models/site_model.dart';
-part 'sites/social.dart';
 
 class DirectLink {
-  // puppeteer executablePath
-  final String? executablePath;
+  DirectLink get _instance => DirectLinkImpl();
 
-  DirectLink({
-    this.executablePath,
-  });
-
-  Future<SiteModel?> check(
-    String url, {
-    Duration? timeout,
+  Future<void> init({
+    bool allowNotification = false,
+    String? defaultIconAndroid,
+    AndroidInitializationSettings? androidInitializationSettings,
+    DarwinInitializationSettings? darwinInitializationSettings,
   }) {
-    return _social.get(
+    return _instance.init(
+      allowNotification: allowNotification,
+      defaultIconAndroid: defaultIconAndroid,
+      androidInitializationSettings: androidInitializationSettings,
+      darwinInitializationSettings: darwinInitializationSettings,
+    );
+  }
+
+  Future<SiteModel?> check(String url, {Duration? timeout}) {
+    return _instance.check(url, timeout: timeout);
+  }
+
+  Future<DownloadTask> download({
+    String? fileName,
+    required String url,
+    required String savedDir,
+    bool showNotification = true,
+  }) {
+    return _instance.download(
       url: url,
-      timeout: timeout,
-      executablePath: executablePath,
+      savedDir: savedDir,
+      fileName: fileName,
+      showNotification: showNotification,
     );
   }
 }

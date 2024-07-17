@@ -11,7 +11,8 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
-  final url = TextEditingController();
+  final url = TextEditingController(
+      text: 'https://youtu.be/QND5HXyDQNQ?si=76WxhNlQGBtklKCk',);
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -75,7 +76,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
     final url = this.url.text.trim();
 
-    await showModalBottomSheet(
+    await showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
       backgroundColor: Theme.of(context).cardColor,

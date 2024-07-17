@@ -1,6 +1,6 @@
-part of '../direct_link.dart';
+part of '../direct_link_impl.dart';
 
-mixin _social {
+mixin _Social {
   static Future<SiteModel?> get({
     required String url,
     String? executablePath,

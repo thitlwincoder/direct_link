@@ -1,3 +1,8 @@
+## 0.2.3
+
+- Fix some minor bugs
+- Add support for download
+
 ## 0.2.2
 
 - Add support for `android` & `ios` platforms

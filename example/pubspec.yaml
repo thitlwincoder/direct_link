@@ -1,8 +1,6 @@
 name: example
 description: "A new Flutter project."
-
 publish_to: "none"
-
 version: 1.0.0+1
 
 environment:
@@ -12,18 +10,16 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.6
+  cupertino_icons: ^1.0.8
   flutter_riverpod: ^2.5.1
   riverpod_annotation: ^2.3.5
 
   direct_link:
     path: ../
   cached_network_image: ^3.3.1
-  flutter_downloader: ^1.11.7
-  file_picker: ^8.0.5
+  file_picker: ^8.0.6
 
 dev_dependencies:
-  flutter_lints: ^3.0.0
   riverpod_generator: ^2.4.0
   build_runner: ^2.4.11
   custom_lint: ^0.6.4

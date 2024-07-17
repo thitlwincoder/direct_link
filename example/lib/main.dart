@@ -1,12 +1,16 @@
+import 'package:direct_link/direct_link.dart';
 import 'package:example/src/home/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await FlutterDownloader.initialize(debug: true, ignoreSsl: true);
+  await DirectLink().init(
+    allowNotification: true,
+    androidInitializationSettings:
+        const AndroidInitializationSettings('launch_background'),
+  );
 
   runApp(const ProviderScope(child: MyApp()));
 }

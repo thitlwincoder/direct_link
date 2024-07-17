@@ -11,7 +11,6 @@ class DetailSheet extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-     
     final provider = ref.watch(homeProvider(url));
 
     return provider.when(

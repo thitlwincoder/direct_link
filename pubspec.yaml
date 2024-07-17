@@ -1,6 +1,6 @@
 name: direct_link
 description: Direct link extractor from URL to stream and download directly.
-version: 0.2.2
+version: 0.2.3
 repository: https://github.com/thitlwincoder/direct_link
 issue_tracker: https://github.com/thitlwincoder/direct_link/issues
 
@@ -25,8 +25,11 @@ dependencies:
     sdk: flutter
 
   html: ^0.15.4
-  puppeteer: ^3.11.0
+  puppeteer: ^3.12.0
   flutter_inappwebview: ^6.0.0
+  easy_downloader: ^0.0.30
+  easy_downloader_flutter_lib: ^0.0.30
+  flutter_local_notifications: ^14.1.5
 
 dev_dependencies:
   flutter_test:
