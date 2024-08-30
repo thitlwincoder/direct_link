@@ -2,8 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:direct_link/direct_link.dart';
-import 'package:easy_downloader/easy_downloader.dart';
-import 'package:easy_downloader_flutter_lib/easy_downloader_flutter_lib.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:html/dom.dart';
@@ -12,20 +10,22 @@ import 'package:puppeteer/puppeteer.dart';
 part 'sites/social.dart';
 
 class DirectLinkImpl implements DirectLink {
-  @override
-  Future<void> init({
-    bool allowNotification = false,
-    String? defaultIconAndroid,
-    AndroidInitializationSettings? androidInitializationSettings,
-    DarwinInitializationSettings? darwinInitializationSettings,
-  }) async {
-    await EasyDownloader().initFlutter(
-      allowNotification: allowNotification,
-      defaultIconAndroid: defaultIconAndroid,
-      androidInitializationSettings: androidInitializationSettings,
-      darwinInitializationSettings: darwinInitializationSettings,
-    );
-  }
+  // @override
+  // Future<void> init({
+  //   bool allowNotification = false,
+  //   String? defaultIconAndroid,
+  //   AndroidInitializationSettings? androidInitializationSettings,
+  //   DarwinInitializationSettings? darwinInitializationSettings,
+  // }) async {
+  //   if (!kIsWeb) {
+  //     await EasyDownloader().initFlutter(
+  //       allowNotification: allowNotification,
+  //       defaultIconAndroid: defaultIconAndroid,
+  //       androidInitializationSettings: androidInitializationSettings,
+  //       darwinInitializationSettings: darwinInitializationSettings,
+  //     );
+  //   }
+  // }
 
   @override
   Future<SiteModel?> check(
@@ -40,23 +40,26 @@ class DirectLinkImpl implements DirectLink {
     );
   }
 
-  @override
-  Future<DownloadTask> download({
-    String? fileName,
-    required String url,
-    required String savedDir,
-    bool showNotification = true,
-  }) async {
-    var task = await EasyDownloader().download(
-      url: url,
-      path: savedDir,
-      fileName: fileName,
-      autoStart: true,
-      headers: {'Referer': 'https://en1.savefrom.net/'},
-    );
+  // @override
+  // Future<DownloadTask?> download({
+  //   String? fileName,
+  //   required String url,
+  //   required String savedDir,
+  //   bool showNotification = true,
+  //   bool autoStart = true,
+  // }) async {
+  //   if (kIsWeb) return null;
 
-    if (showNotification) task.showNotification();
+  //   var task = await EasyDownloader().download(
+  //     url: url,
+  //     path: savedDir,
+  //     fileName: fileName,
+  //     autoStart: autoStart,
+  //     headers: {'Referer': 'https://en1.savefrom.net/'},
+  //   );
 
-    return task;
-  }
+  //   if (showNotification) task.showNotification();
+
+  //   return task;
+  // }
 }
