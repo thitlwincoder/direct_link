@@ -52,17 +52,6 @@ import 'package:direct_link/direct_link.dart';
 var directLink = DirectLink();
 ```
 
-Initialize the plugin for notification
-
-```dart
-directLink.init(
-  allowNotification: true,
-  androidInitializationSettings:
-    const AndroidInitializationSettings('launch_background'), // add your logo
-);
-```
-
-
 Use `check` function to check your link have been existed my support sites
 
 ```dart
@@ -83,16 +72,6 @@ if (data != null) {
     print('-' * 20);
   }
 }
-```
-
-If you want to download use `download` function.
-
-```dart
-await directLink.download(
-  url: data.links[0].link, // use link from data.links
-  savedDir: dir,
-  fileName: fileName,
-);
 ```
 
 ## Contribution

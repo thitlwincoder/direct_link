@@ -1,3 +1,8 @@
+## 0.2.4
+
+- Refactor version upgrade
+- Remove download support
+
 ## 0.2.3
 
 - Fix some minor bugs
