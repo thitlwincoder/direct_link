@@ -8,3 +8,4 @@ linter:
   rules:
     sort_pub_dependencies: false
     public_member_api_docs: false
+    avoid_renaming_method_parameters: false

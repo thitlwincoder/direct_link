@@ -4,9 +4,14 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'home_provider.g.dart';
 
 @Riverpod(keepAlive: true)
+DirectLink directLink(DirectLinkRef ref) {
+  return DirectLink();
+}
+
+@Riverpod(keepAlive: true)
 class Home extends _$Home {
   @override
   Future<SiteModel?> build(String url) {
-    return DirectLink().check(url);
+    return ref.read(directLinkProvider).check(url);
   }
 }

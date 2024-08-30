@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:direct_link/direct_link.dart';
 import 'package:example/src/home/presentation/widgets/quality_item.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 class DataWidget extends StatefulWidget {
@@ -137,16 +136,6 @@ class _DataWidgetState extends State<DataWidget> {
   }
 
   Future<void> onDownload() async {
-    final url = link!.link;
-
-    final dir = await FilePicker.platform.getDirectoryPath();
-
-    if (dir == null) return;
-
-    await DirectLink().download(
-      url: url,
-      savedDir: dir,
-      fileName: widget.data?.title,
-    );
+    // write your own custom download method
   }
 }

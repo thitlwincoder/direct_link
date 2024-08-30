@@ -12,7 +12,8 @@ class HomeScreen extends ConsumerStatefulWidget {
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   final url = TextEditingController(
-      text: 'https://youtu.be/QND5HXyDQNQ?si=76WxhNlQGBtklKCk',);
+    text: 'https://youtu.be/QND5HXyDQNQ?si=76WxhNlQGBtklKCk',
+  );
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -23,10 +24,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         actions: [
           CupertinoButton(
             child: const Icon(Icons.download),
-            onPressed: () {},
-          ),
-          CupertinoButton(
-            child: const Icon(Icons.settings),
             onPressed: () {},
           ),
         ],

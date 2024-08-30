@@ -6,7 +6,21 @@ part of 'home_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$homeHash() => r'cd24eb56807427d728f395a0c4f3fc5c7039cfb0';
+String _$directLinkHash() => r'0316312dfbb07b3cfeaacf6247cb7157b461680c';
+
+/// See also [directLink].
+@ProviderFor(directLink)
+final directLinkProvider = Provider<DirectLink>.internal(
+  directLink,
+  name: r'directLinkProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$directLinkHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef DirectLinkRef = ProviderRef<DirectLink>;
+String _$homeHash() => r'6b041f6dcbe144730dcd74d4a6881fd81121bf95';
 
 /// Copied from Dart SDK
 class _SystemHash {
