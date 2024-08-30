@@ -6,7 +6,7 @@ issue_tracker: https://github.com/thitlwincoder/direct_link/issues
 
 environment:
   sdk: ^3.5.0
-  flutter: ^3.24.0
+  flutter: ">=3.24.0"
 
 platforms:
   android:

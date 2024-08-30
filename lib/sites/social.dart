@@ -6,9 +6,7 @@ mixin _Social {
     String? executablePath,
     Duration? timeout,
   }) async {
-    if (kIsWeb) return _getWithInAppWebView(url: url);
-
-    if (Platform.isAndroid || Platform.isIOS) {
+    if (kIsWeb || Platform.isAndroid || Platform.isIOS) {
       return _getWithInAppWebView(url: url);
     }
 
@@ -83,11 +81,7 @@ mixin _Social {
     var attr = e.attributes;
     var quality = e.querySelector('span')?.text ?? e.text;
 
-    return Link(
-      quality: quality,
-      link: attr['href']!,
-      type: attr['data-type'],
-    );
+    return Link(quality: quality, link: attr['href']!, type: attr['data-type']);
   }
 
   static SiteModel _parseContent(String? content) {
