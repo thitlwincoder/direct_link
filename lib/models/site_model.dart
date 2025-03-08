@@ -7,10 +7,10 @@ class SiteModel {
   final List<Link>? links;
 
   SiteModel({
-    required this.title,
-    required this.thumbnail,
-    required this.duration,
-    required this.links,
+    this.title,
+    this.thumbnail,
+    this.duration,
+    this.links,
   });
 
   Map<String, dynamic> toJson() {

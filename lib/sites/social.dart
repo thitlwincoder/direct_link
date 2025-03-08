@@ -17,7 +17,7 @@ mixin _Social {
     );
   }
 
-  static Future<SiteModel> _getWithPuppeteer({
+  static Future<SiteModel?> _getWithPuppeteer({
     required String url,
     String? executablePath,
     Duration? timeout,
@@ -45,10 +45,11 @@ mixin _Social {
   }
 
   static Future<SiteModel?> _getWithInAppWebView({required String url}) async {
-    final Completer<SiteModel> model = Completer<SiteModel>();
+    final Completer<SiteModel?> model = Completer<SiteModel?>();
 
     HeadlessInAppWebView(
       initialSettings: InAppWebViewSettings(
+        incognito: true,
         useOnLoadResource: true,
         isInspectable: kDebugMode,
         mediaPlaybackRequiresUserGesture: false,
@@ -68,8 +69,7 @@ mixin _Social {
             return _parseContent(content);
           },
         );
-
-        model.complete(data);
+        if (!model.isCompleted) model.complete(data);
       },
     )
       ..run()
@@ -84,7 +84,11 @@ mixin _Social {
     return Link(quality: quality, link: attr['href']!, type: attr['data-type']);
   }
 
-  static SiteModel _parseContent(String? content) {
+  static SiteModel? _parseContent(String? content) {
+    if (content == null || content.contains('The download link not found.')) {
+      return null;
+    }
+
     var body = parse(content);
 
     String? thumbnail =

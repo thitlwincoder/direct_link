@@ -37,6 +37,12 @@ class _DataWidgetState extends State<DataWidget> {
       snap: true,
       expand: false,
       builder: (context, scrollController) {
+        if (widget.data == null) {
+          return const Center(
+            child: Text('Download link not found'),
+          );
+        }
+
         return ListView(
           controller: scrollController,
           padding: const EdgeInsets.all(10),
