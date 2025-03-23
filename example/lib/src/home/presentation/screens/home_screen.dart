@@ -12,7 +12,7 @@ class HomeScreen extends ConsumerStatefulWidget {
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   final url = TextEditingController(
-    text: 'https://youtu.be/QND5HXyDQNQ?si=76WxhNlQGBtklKCk',
+    text: 'https://www.instagram.com/viralbhayani/reel/C99I7bONc0R/',
   );
   final formKey = GlobalKey<FormState>();
 

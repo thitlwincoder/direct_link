@@ -6,7 +6,7 @@ part of 'home_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$directLinkHash() => r'0316312dfbb07b3cfeaacf6247cb7157b461680c';
+String _$directLinkHash() => r'3587a786afc19c243e47ec248f84c2585d7dcb48';
 
 /// See also [directLink].
 @ProviderFor(directLink)
@@ -19,6 +19,8 @@ final directLinkProvider = Provider<DirectLink>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef DirectLinkRef = ProviderRef<DirectLink>;
 String _$homeHash() => r'6b041f6dcbe144730dcd74d4a6881fd81121bf95';
 
@@ -165,6 +167,8 @@ class HomeProvider extends AsyncNotifierProviderImpl<Home, SiteModel?> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin HomeRef on AsyncNotifierProviderRef<SiteModel?> {
   /// The parameter `url` of this provider.
   String get url;
@@ -178,4 +182,4 @@ class _HomeProviderElement
   String get url => (origin as HomeProvider).url;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

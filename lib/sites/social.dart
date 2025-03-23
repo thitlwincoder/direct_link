@@ -85,11 +85,20 @@ mixin _Social {
   }
 
   static SiteModel? _parseContent(String? content) {
-    if (content == null || content.contains('The download link not found.')) {
-      return null;
-    }
-
     var body = parse(content);
+
+    var result = body.querySelector('#sf_result');
+    if (result != null) {
+      var thumbnail = result.querySelector('img')?.attributes['src'];
+      var title = result.querySelector('.row')?.attributes['title'];
+      var href = result.querySelector('.def-btn-box > a')?.attributes['href'];
+
+      return SiteModel(
+        title: title,
+        thumbnail: thumbnail,
+        links: [Link(link: href!, quality: '720p', type: 'mp4')],
+      );
+    }
 
     String? thumbnail =
         body.querySelector(".media-result .clip img")?.attributes['src'];

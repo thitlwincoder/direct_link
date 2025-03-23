@@ -73,13 +73,14 @@ class _DataWidgetState extends State<DataWidget> {
                     children: [
                       Text('${widget.data?.title}'),
                       const SizedBox(height: 2),
-                      Text(
-                        '${widget.data?.duration}',
-                        style: TextStyle(
-                          fontSize: 10,
-                          color: Theme.of(context).hintColor,
+                      if (widget.data?.duration != null)
+                        Text(
+                          '${widget.data?.duration}',
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: Theme.of(context).hintColor,
+                          ),
                         ),
-                      ),
                     ],
                   ),
                 ),

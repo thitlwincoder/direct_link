@@ -1,4 +1,4 @@
-library direct_link;
+library;
 
 import 'package:direct_link/direct_link_impl.dart';
 
