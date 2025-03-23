@@ -1,3 +1,8 @@
+## 0.2.5
+
+- Refactor version upgrade
+- Fixed some url not working
+
 ## 0.2.4
 
 - Refactor version upgrade
