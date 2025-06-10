@@ -1,3 +1,7 @@
+## 0.3.0
+
+- Use with direct api to more faster and stable
+
 ## 0.2.5
 
 - Refactor version upgrade

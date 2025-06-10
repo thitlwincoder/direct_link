@@ -1,6 +1,6 @@
 name: direct_link
 description: Direct link extractor from URL to stream and download directly.
-version: 0.2.5
+version: 0.3.0
 repository: https://github.com/thitlwincoder/direct_link
 issue_tracker: https://github.com/thitlwincoder/direct_link/issues
 
