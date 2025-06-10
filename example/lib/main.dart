@@ -16,10 +16,10 @@ class MyApp extends ConsumerWidget {
 
     return MaterialApp.router(
       title: 'Direct Link',
-      darkTheme: ThemeData.dark(useMaterial3: true),
-      theme: ThemeData.light(useMaterial3: true),
       debugShowCheckedModeBanner: false,
       routerDelegate: router.routerDelegate,
+      theme: ThemeData.light(useMaterial3: true),
+      darkTheme: ThemeData.dark(useMaterial3: true),
       routeInformationParser: router.routeInformationParser,
       routeInformationProvider: router.routeInformationProvider,
     );

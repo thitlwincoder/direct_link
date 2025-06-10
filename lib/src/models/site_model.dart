@@ -1,17 +1,10 @@
-part of '../direct_link.dart';
-
 class SiteModel {
   final String? title;
   final String? thumbnail;
   final String? duration;
   final List<Link>? links;
 
-  SiteModel({
-    this.title,
-    this.thumbnail,
-    this.duration,
-    this.links,
-  });
+  SiteModel({this.title, this.thumbnail, this.duration, this.links});
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
@@ -28,15 +21,11 @@ class Link {
   final String link;
   final String? type;
 
-  Link({
-    required this.quality,
-    required this.link,
-    required this.type,
-  });
+  Link({required this.quality, required this.link, required this.type});
 
   Map<String, dynamic> toJson() => {
-        'quality': quality,
-        'link': link,
-        'type': type,
-      };
+    'quality': quality,
+    'link': link,
+    'type': type,
+  };
 }

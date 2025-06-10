@@ -9,7 +9,7 @@ DirectLink directLink(Ref ref) {
   return DirectLink();
 }
 
-@Riverpod(keepAlive: true)
+@riverpod
 class Home extends _$Home {
   @override
   Future<SiteModel?> build(String url) {

@@ -1,4 +1,4 @@
-import 'package:direct_link/direct_link.dart';
+import 'package:direct_link/src/direct_link.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

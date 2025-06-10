@@ -22,7 +22,7 @@ final directLinkProvider = Provider<DirectLink>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef DirectLinkRef = ProviderRef<DirectLink>;
-String _$homeHash() => r'6b041f6dcbe144730dcd74d4a6881fd81121bf95';
+String _$homeHash() => r'129402ef0d48e375f4ff04d26d7a3187e4d4431a';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -45,7 +45,7 @@ class _SystemHash {
   }
 }
 
-abstract class _$Home extends BuildlessAsyncNotifier<SiteModel?> {
+abstract class _$Home extends BuildlessAutoDisposeAsyncNotifier<SiteModel?> {
   late final String url;
 
   FutureOr<SiteModel?> build(
@@ -96,7 +96,8 @@ class HomeFamily extends Family<AsyncValue<SiteModel?>> {
 }
 
 /// See also [Home].
-class HomeProvider extends AsyncNotifierProviderImpl<Home, SiteModel?> {
+class HomeProvider
+    extends AutoDisposeAsyncNotifierProviderImpl<Home, SiteModel?> {
   /// See also [Home].
   HomeProvider(
     String url,
@@ -149,7 +150,7 @@ class HomeProvider extends AsyncNotifierProviderImpl<Home, SiteModel?> {
   }
 
   @override
-  AsyncNotifierProviderElement<Home, SiteModel?> createElement() {
+  AutoDisposeAsyncNotifierProviderElement<Home, SiteModel?> createElement() {
     return _HomeProviderElement(this);
   }
 
@@ -169,13 +170,14 @@ class HomeProvider extends AsyncNotifierProviderImpl<Home, SiteModel?> {
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-mixin HomeRef on AsyncNotifierProviderRef<SiteModel?> {
+mixin HomeRef on AutoDisposeAsyncNotifierProviderRef<SiteModel?> {
   /// The parameter `url` of this provider.
   String get url;
 }
 
 class _HomeProviderElement
-    extends AsyncNotifierProviderElement<Home, SiteModel?> with HomeRef {
+    extends AutoDisposeAsyncNotifierProviderElement<Home, SiteModel?>
+    with HomeRef {
   _HomeProviderElement(super.provider);
 
   @override
