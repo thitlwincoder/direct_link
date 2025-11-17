@@ -6,182 +6,93 @@ part of 'home_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$directLinkHash() => r'3587a786afc19c243e47ec248f84c2585d7dcb48';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [directLink].
-@ProviderFor(directLink)
-final directLinkProvider = Provider<DirectLink>.internal(
-  directLink,
-  name: r'directLinkProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$directLinkHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef DirectLinkRef = ProviderRef<DirectLink>;
-String _$homeHash() => r'129402ef0d48e375f4ff04d26d7a3187e4d4431a';
-
-/// Copied from Dart SDK
-class _SystemHash {
-  _SystemHash._();
-
-  static int combine(int hash, int value) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + value);
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
-    return hash ^ (hash >> 6);
-  }
-
-  static int finish(int hash) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
-    // ignore: parameter_assignments
-    hash = hash ^ (hash >> 11);
-    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
-  }
-}
-
-abstract class _$Home extends BuildlessAutoDisposeAsyncNotifier<SiteModel?> {
-  late final String url;
-
-  FutureOr<SiteModel?> build(
-    String url,
-  );
-}
-
-/// See also [Home].
 @ProviderFor(Home)
-const homeProvider = HomeFamily();
+const homeProvider = HomeFamily._();
 
-/// See also [Home].
-class HomeFamily extends Family<AsyncValue<SiteModel?>> {
-  /// See also [Home].
-  const HomeFamily();
+final class HomeProvider extends $AsyncNotifierProvider<Home, SiteModel?> {
+  const HomeProvider._({
+    required HomeFamily super.from,
+    required String super.argument,
+  }) : super(
+         retry: null,
+         name: r'homeProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
 
-  /// See also [Home].
-  HomeProvider call(
-    String url,
-  ) {
-    return HomeProvider(
-      url,
-    );
+  @override
+  String debugGetCreateSourceHash() => _$homeHash();
+
+  @override
+  String toString() {
+    return r'homeProvider'
+        ''
+        '($argument)';
   }
 
+  @$internal
   @override
-  HomeProvider getProviderOverride(
-    covariant HomeProvider provider,
-  ) {
-    return call(
-      provider.url,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'homeProvider';
-}
-
-/// See also [Home].
-class HomeProvider
-    extends AutoDisposeAsyncNotifierProviderImpl<Home, SiteModel?> {
-  /// See also [Home].
-  HomeProvider(
-    String url,
-  ) : this._internal(
-          () => Home()..url = url,
-          from: homeProvider,
-          name: r'homeProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product') ? null : _$homeHash,
-          dependencies: HomeFamily._dependencies,
-          allTransitiveDependencies: HomeFamily._allTransitiveDependencies,
-          url: url,
-        );
-
-  HomeProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.url,
-  }) : super.internal();
-
-  final String url;
-
-  @override
-  FutureOr<SiteModel?> runNotifierBuild(
-    covariant Home notifier,
-  ) {
-    return notifier.build(
-      url,
-    );
-  }
-
-  @override
-  Override overrideWith(Home Function() create) {
-    return ProviderOverride(
-      origin: this,
-      override: HomeProvider._internal(
-        () => create()..url = url,
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        url: url,
-      ),
-    );
-  }
-
-  @override
-  AutoDisposeAsyncNotifierProviderElement<Home, SiteModel?> createElement() {
-    return _HomeProviderElement(this);
-  }
+  Home create() => Home();
 
   @override
   bool operator ==(Object other) {
-    return other is HomeProvider && other.url == url;
+    return other is HomeProvider && other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, url.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin HomeRef on AutoDisposeAsyncNotifierProviderRef<SiteModel?> {
-  /// The parameter `url` of this provider.
-  String get url;
-}
+String _$homeHash() => r'a3d64f2bdc49697f3a491140f50ce534b6173e57';
 
-class _HomeProviderElement
-    extends AutoDisposeAsyncNotifierProviderElement<Home, SiteModel?>
-    with HomeRef {
-  _HomeProviderElement(super.provider);
+final class HomeFamily extends $Family
+    with
+        $ClassFamilyOverride<
+          Home,
+          AsyncValue<SiteModel?>,
+          SiteModel?,
+          FutureOr<SiteModel?>,
+          String
+        > {
+  const HomeFamily._()
+    : super(
+        retry: null,
+        name: r'homeProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  HomeProvider call(String url) => HomeProvider._(argument: url, from: this);
 
   @override
-  String get url => (origin as HomeProvider).url;
+  String toString() => r'homeProvider';
 }
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+
+abstract class _$Home extends $AsyncNotifier<SiteModel?> {
+  late final _$args = ref.$arg as String;
+  String get url => _$args;
+
+  FutureOr<SiteModel?> build(String url);
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build(_$args);
+    final ref = this.ref as $Ref<AsyncValue<SiteModel?>, SiteModel?>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<AsyncValue<SiteModel?>, SiteModel?>,
+              AsyncValue<SiteModel?>,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
+}

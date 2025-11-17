@@ -3,6 +3,14 @@ import 'dart:convert';
 import 'package:direct_link/src/models/site_model.dart';
 import 'package:direct_link/src/utils/parse_model.dart';
 
+/// Parses the remote service response and returns a `SiteModel`.
+///
+/// - `message`: The full HTTP response body (HTML/JS) returned by the
+///   remote service. This method attempts to extract the JSON payload
+///   embedded in the JavaScript call and convert it to `SiteModel`.
+///
+/// Returns a `SiteModel` on success or `null` if the expected payload
+/// cannot be found or parsed.
 SiteModel? parseHtml(String message) {
   final executed =
       message.split('window.parent.sf.videoResult.show(').elementAtOrNull(1) ??

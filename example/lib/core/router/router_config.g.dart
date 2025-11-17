@@ -6,21 +6,46 @@ part of 'router_config.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$routerConfigHash() => r'40e848dc9b3a2ef192f630652136b06b8d993be8';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [routerConfig].
 @ProviderFor(routerConfig)
-final routerConfigProvider = AutoDisposeProvider<GoRouter>.internal(
-  routerConfig,
-  name: r'routerConfigProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$routerConfigHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+const routerConfigProvider = RouterConfigProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef RouterConfigRef = AutoDisposeProviderRef<GoRouter>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class RouterConfigProvider
+    extends $FunctionalProvider<GoRouter, GoRouter, GoRouter>
+    with $Provider<GoRouter> {
+  const RouterConfigProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'routerConfigProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$routerConfigHash();
+
+  @$internal
+  @override
+  $ProviderElement<GoRouter> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  GoRouter create(Ref ref) {
+    return routerConfig(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(GoRouter value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<GoRouter>(value),
+    );
+  }
+}
+
+String _$routerConfigHash() => r'40e848dc9b3a2ef192f630652136b06b8d993be8';

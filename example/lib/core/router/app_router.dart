@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 part 'app_router.g.dart';
 
 @TypedGoRoute<HomeRoute>(path: '/')
-class HomeRoute extends GoRouteData {
+class HomeRoute extends GoRouteData with $HomeRoute {
   const HomeRoute();
 
   @override

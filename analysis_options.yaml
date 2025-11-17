@@ -18,6 +18,7 @@ include: package:lints/recommended.yaml
 linter:
   rules:
     sort_pub_dependencies: false
+    public_member_api_docs: true
 
 # analyzer:
 #   exclude:
