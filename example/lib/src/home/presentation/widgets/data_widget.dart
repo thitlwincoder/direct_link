@@ -38,14 +38,12 @@ class _DataWidgetState extends State<DataWidget> {
       expand: false,
       builder: (context, scrollController) {
         if (widget.data == null) {
-          return const Center(
-            child: Text('Download link not found'),
-          );
+          return const Center(child: Text('Download link not found'));
         }
 
         return ListView(
+          padding: const .all(10),
           controller: scrollController,
-          padding: const EdgeInsets.all(10),
           children: [
             Row(
               children: [
@@ -53,11 +51,11 @@ class _DataWidgetState extends State<DataWidget> {
                   child: Container(
                     height: 60,
                     decoration: BoxDecoration(
+                      borderRadius: .circular(4),
                       color: Colors.grey.shade400,
-                      borderRadius: BorderRadius.circular(4),
-                      border: Border.all(color: Colors.grey.shade400),
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
+                      border: .all(color: Colors.grey.shade400),
+                      image: .new(
+                        fit: .cover,
                         image: CachedNetworkImageProvider(
                           widget.data?.thumbnail ?? '',
                         ),
@@ -69,14 +67,14 @@ class _DataWidgetState extends State<DataWidget> {
                 Expanded(
                   flex: 2,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: .start,
                     children: [
                       Text('${widget.data?.title}'),
                       const SizedBox(height: 2),
                       if (widget.data?.duration != null)
                         Text(
                           '${widget.data?.duration}',
-                          style: TextStyle(
+                          style: .new(
                             fontSize: 10,
                             color: Theme.of(context).hintColor,
                           ),
@@ -96,7 +94,7 @@ class _DataWidgetState extends State<DataWidget> {
                 final e = links.keys.toList()[index];
 
                 return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: .start,
                   children: [
                     Text(e),
                     const SizedBox(height: 4),
@@ -106,11 +104,11 @@ class _DataWidgetState extends State<DataWidget> {
                       physics: const NeverScrollableScrollPhysics(),
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        mainAxisSpacing: 6,
-                        crossAxisSpacing: 6,
-                        childAspectRatio: 2.4,
-                      ),
+                            crossAxisCount: 3,
+                            mainAxisSpacing: 6,
+                            crossAxisSpacing: 6,
+                            childAspectRatio: 2.4,
+                          ),
                       itemBuilder: (context, index) {
                         final link = links[e]![index];
 

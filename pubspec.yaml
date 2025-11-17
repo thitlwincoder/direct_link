@@ -5,8 +5,7 @@ repository: https://github.com/thitlwincoder/direct_link
 issue_tracker: https://github.com/thitlwincoder/direct_link/issues
 
 environment:
-  sdk: ^3.8.1
-  flutter: ">=1.17.0"
+  sdk: ^3.10.0
 
 platforms:
   android:
@@ -24,7 +23,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  http: ^1.4.0
+  http: ^1.5.0
   brotli: ^0.6.0
   crypto: ^3.0.6
   flutter_inappwebview: ^6.1.5
@@ -33,4 +32,4 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0

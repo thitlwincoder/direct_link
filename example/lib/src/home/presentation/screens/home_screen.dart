@@ -22,29 +22,26 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       appBar: AppBar(
         title: const Text('Direct Link'),
         actions: [
-          CupertinoButton(
-            child: const Icon(Icons.download),
-            onPressed: () {},
-          ),
+          CupertinoButton(child: const Icon(Icons.download), onPressed: () {}),
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const .all(20),
         child: Form(
           key: formKey,
-          autovalidateMode: AutovalidateMode.onUserInteraction,
+          autovalidateMode: .onUserInteraction,
           child: Column(
             children: [
               TextFormField(
                 controller: url,
-                style: const TextStyle(fontSize: 14),
+                style: const .new(fontSize: 14),
                 validator: (v) => v!.isEmpty ? 'required' : null,
-                decoration: const InputDecoration(
+                decoration: const .new(
                   filled: true,
                   isDense: true,
                   hintText: 'Paste link here...',
-                  hintStyle: TextStyle(fontSize: 14),
-                  border: OutlineInputBorder(borderSide: BorderSide.none),
+                  hintStyle: .new(fontSize: 14),
+                  border: OutlineInputBorder(borderSide: .none),
                 ),
               ),
               const SizedBox(height: 10),
@@ -53,8 +50,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 style: ElevatedButton.styleFrom(
                   elevation: 0,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(6),
-                    side: const BorderSide(),
+                    borderRadius: .circular(6),
+                    side: const .new(),
                   ),
                 ),
                 child: const Center(child: Text('Check')),
@@ -78,7 +75,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       isScrollControlled: true,
       backgroundColor: Theme.of(context).cardColor,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
+        borderRadius: .vertical(top: .circular(10)),
       ),
       builder: (_) => DetailSheet(url),
     );

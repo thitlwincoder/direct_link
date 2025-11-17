@@ -15,10 +15,10 @@ class DetailSheet extends ConsumerWidget {
 
     return provider.when(
       data: DataWidget.new,
+      loading: LoadingWidget.new,
       error: (error, stackTrace) => Center(
         child: Text(error.toString()),
       ),
-      loading: LoadingWidget.new,
     );
   }
 }

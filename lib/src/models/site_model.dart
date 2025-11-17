@@ -6,14 +6,12 @@ class SiteModel {
 
   SiteModel({this.title, this.thumbnail, this.duration, this.links});
 
-  Map<String, dynamic> toJson() {
-    return <String, dynamic>{
-      'title': title,
-      'thumbnail': thumbnail,
-      'duration': duration,
-      'links': links?.map((x) => x.toJson()).toList(),
-    };
-  }
+  Map<String, dynamic> toJson() => {
+    'title': title,
+    'thumbnail': thumbnail,
+    'duration': duration,
+    'links': links?.map((x) => x.toJson()).toList(),
+  };
 }
 
 class Link {

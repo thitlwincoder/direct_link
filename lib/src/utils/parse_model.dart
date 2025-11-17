@@ -9,7 +9,7 @@ SiteModel parseModel(Map<String, dynamic> map) {
   for (var i = 0; i < url.length; i++) {
     var data = url[i];
     links.add(
-      Link(
+      .new(
         link: data['url'],
         type: data['type'],
         quality: data['quality'] ?? 'sd',
@@ -17,7 +17,7 @@ SiteModel parseModel(Map<String, dynamic> map) {
     );
   }
 
-  return SiteModel(
+  return .new(
     links: links,
     title: meta['title'],
     thumbnail: map['thumb'],

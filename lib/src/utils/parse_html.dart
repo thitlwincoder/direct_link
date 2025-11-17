@@ -18,10 +18,9 @@ SiteModel? parseHtml(String message) {
       (v) => v.contains('window.parent.sf.enableElement'),
     );
     final joined = '${splits.take(lastIndex).join('],"')}]';
-    final json = jsonDecode(joined);
-    return parseModel(json[0]);
-  } else {
-    final json = jsonDecode(executed.split(');')[0]);
-    return parseModel(json);
+    return parseModel(jsonDecode(joined)[0]);
   }
+
+  final json = jsonDecode(executed.split(');')[0]);
+  return parseModel(json);
 }

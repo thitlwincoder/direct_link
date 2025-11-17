@@ -9,30 +9,20 @@ Future<SiteModel> parseResponse(String decodedText) {
   var model = Completer<SiteModel>();
 
   HeadlessInAppWebView(
-      initialUrlRequest: URLRequest(url: WebUri('about:blank')),
-      initialSettings: InAppWebViewSettings(
+      initialUrlRequest: .new(url: .new('about:blank')),
+      initialSettings: .new(
         clearCache: true,
         cacheEnabled: false,
         clearSessionCache: true,
       ),
       onJsAlert: (controller, jsAlertRequest) async {
-        return JsAlertResponse(
-          handledByClient: true,
-          action: JsAlertResponseAction.CONFIRM,
-        );
+        return .new(handledByClient: true, action: .CONFIRM);
       },
       onJsConfirm: (controller, jsConfirmRequest) async {
-        return JsConfirmResponse(
-          handledByClient: true,
-          action: JsConfirmResponseAction.CONFIRM,
-        );
+        return .new(handledByClient: true, action: .CONFIRM);
       },
       onJsPrompt: (controller, jsPromptRequest) async {
-        return JsPromptResponse(
-          handledByClient: true,
-          action: JsPromptResponseAction.CONFIRM,
-          value: "",
-        );
+        return .new(handledByClient: true, action: .CONFIRM, value: "");
       },
       onConsoleMessage: (controller, r) async {
         var message = r.message;

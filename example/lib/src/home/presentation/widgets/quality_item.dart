@@ -19,10 +19,8 @@ class QualityItem extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         elevation: 0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(4),
-          side: isSelected
-              ? const BorderSide(color: Colors.red)
-              : BorderSide.none,
+          borderRadius: .circular(4),
+          side: isSelected ? const .new(color: Colors.red) : .none,
         ),
       ),
       onPressed: onTap,
