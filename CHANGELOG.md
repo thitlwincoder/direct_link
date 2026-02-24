@@ -1,3 +1,7 @@
+## 0.3.2
+
+- Fix connection timed out issue #28
+
 ## 0.3.1
 
 - Upgrade flutter version
