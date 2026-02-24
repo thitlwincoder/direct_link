@@ -1,28 +1,9 @@
-import 'dart:convert';
-import 'dart:typed_data';
+import 'dart:async';
 
-import 'package:brotli/brotli.dart';
-import 'package:direct_link/src/utils/generate_hash.dart';
-import 'package:http/http.dart' as http;
-
-/// Default HTTP headers used on outgoing requests.
-///
-/// These headers aim to emulate a modern browser request to avoid
-/// unnecessary rejections from some endpoints. They can be copied and
-/// modified by callers if needed.
-var defaultHeaders = {
-  'accept': '*/*',
-  'accept-encoding': 'gzip, deflate, br',
-  'accept-language': 'en-US,en;q=0.9',
-  'sec-ch-ua':
-      '"Google Chrome";v="117", "Not;A=Brand";v="8", "Chromium";v="117"',
-  'sec-ch-ua-mobile': '?0',
-  'sec-fetch-dest': 'empty',
-  'sec-fetch-mode': 'cors',
-  'sec-fetch-site': 'same-origin',
-  'user-agent':
-      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36',
-};
+import 'package:direct_link/direct_link.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:html/dom.dart';
+import 'package:html/parser.dart';
 
 /// Sends a POST request with a predefined form to the service and
 /// returns the decoded response body.
@@ -39,43 +20,95 @@ var defaultHeaders = {
 /// final data = await getResponseData('https://example.com/video');
 /// print(data);
 /// ```
-Future<String> getResponseData(String url) async {
-  var form = {
-    'sf_url': url,
-    'sf_submit': '',
-    'new': '2',
-    'lang': 'en',
-    'app': '',
-    'country': 'en',
-    'os': 'Windows',
-    'browser': 'Chrome',
-    'channel': 'main',
-    'sf-nomad': '1',
-    'url': url,
-    'ts': '${DateTime.now().millisecondsSinceEpoch}',
-    '_ts': '1720433117117',
-    '_tsc': '0',
-    // `_s` is a per-request generated token produced by
-    // `generateHash`, which mixes the url, timestamp and a seed.
-    '_s': generateHash(url),
-    '_x': '1',
-  };
+Future<SiteModel?> getResponseData(
+  String url, {
+  double? timeoutInterval,
+}) async {
+  final Completer<SiteModel?> model = Completer<SiteModel?>();
 
-  // The service endpoint is stored as a base64-encoded string to
-  // avoid embedding the plain URL directly in source code.
-  var hash = 'aHR0cHM6Ly93b3JrZXIuc2F2ZWZyb20ubmV0L3NhdmVmcm9tLnBocA==';
+  HeadlessInAppWebView(
+      initialSettings: .new(
+        incognito: true,
+        useOnLoadResource: true,
+        mediaPlaybackRequiresUserGesture: false,
+        javaScriptCanOpenWindowsAutomatically: true,
+      ),
+      initialUrlRequest: URLRequest(
+        url: WebUri('https://en.savefrom.net/'),
+        timeoutInterval: timeoutInterval,
+      ),
+      onLoadStop: (controller, uri) async {
+        await controller.evaluateJavascript(
+          source:
+              '''
+          document.querySelector('#sf_url').value = '$url'
+          document.querySelector('#sf_submit').click()
+        ''',
+        );
 
-  var r = await http.post(
-    Uri.parse(utf8.decode(base64.decode(hash))),
-    headers: {
-      ...defaultHeaders,
-      'content-type': 'application/x-www-form-urlencoded',
-      'origin': 'https://en.savefrom.net',
-      'referer': 'https://en.savefrom.net/',
-    },
-    body: form,
+        var data = await Future.delayed(Duration(seconds: 10), () async {
+          var content = await controller.getHtml();
+          return _parseContent(content);
+        });
+        if (!model.isCompleted) model.complete(data);
+      },
+    )
+    ..run()
+    ..dispose();
+  return model.future;
+}
+
+SiteModel? _parseContent(String? content) {
+  var body = parse(content);
+
+  var result = body.querySelector('#sf_result');
+  if (result != null) {
+    var thumbnail = result.querySelector('img')?.attributes['src'];
+    var title = result.querySelector('.row')?.attributes['title'];
+    var href = result.querySelector('.def-btn-box > a')?.attributes['href'];
+
+    return SiteModel(
+      title: title,
+      thumbnail: thumbnail,
+      links: [Link(link: href!, quality: '720p', type: 'mp4')],
+    );
+  }
+
+  String? thumbnail = body
+      .querySelector(".media-result .clip img")
+      ?.attributes['src'];
+
+  var info = body.querySelector('.info-box');
+
+  String? title = info?.querySelector(".title")?.text;
+  String? duration = info?.querySelector(".duration")?.text;
+
+  var linkGroup = info?.querySelectorAll('.link-group a') ?? [];
+
+  var links = <Link>[];
+
+  if (linkGroup.isNotEmpty) {
+    for (var e in linkGroup) {
+      links.add(_parseLink(e));
+    }
+  }
+
+  if (links.isEmpty) {
+    var single = body.querySelector('.def-btn-box a');
+    if (single != null) links.add(_parseLink(single));
+  }
+
+  return SiteModel(
+    title: title,
+    links: links,
+    duration: duration,
+    thumbnail: thumbnail,
   );
+}
 
-  // The remote returns brotli-compressed bytes; decode to String.
-  return brotli.decodeToString(Uint16List.fromList(r.bodyBytes));
+Link _parseLink(Element e) {
+  var attr = e.attributes;
+  var quality = e.querySelector('span')?.text ?? e.text;
+
+  return Link(quality: quality, link: attr['href']!, type: attr['data-type']);
 }

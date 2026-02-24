@@ -10,10 +10,10 @@ part of 'home_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(Home)
-const homeProvider = HomeFamily._();
+final homeProvider = HomeFamily._();
 
 final class HomeProvider extends $AsyncNotifierProvider<Home, SiteModel?> {
-  const HomeProvider._({
+  HomeProvider._({
     required HomeFamily super.from,
     required String super.argument,
   }) : super(
@@ -60,7 +60,7 @@ final class HomeFamily extends $Family
           FutureOr<SiteModel?>,
           String
         > {
-  const HomeFamily._()
+  HomeFamily._()
     : super(
         retry: null,
         name: r'homeProvider',
@@ -83,7 +83,6 @@ abstract class _$Home extends $AsyncNotifier<SiteModel?> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build(_$args);
     final ref = this.ref as $Ref<AsyncValue<SiteModel?>, SiteModel?>;
     final element =
         ref.element
@@ -93,6 +92,6 @@ abstract class _$Home extends $AsyncNotifier<SiteModel?> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, () => build(_$args));
   }
 }

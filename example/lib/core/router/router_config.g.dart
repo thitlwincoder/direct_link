@@ -10,12 +10,12 @@ part of 'router_config.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(routerConfig)
-const routerConfigProvider = RouterConfigProvider._();
+final routerConfigProvider = RouterConfigProvider._();
 
 final class RouterConfigProvider
     extends $FunctionalProvider<GoRouter, GoRouter, GoRouter>
     with $Provider<GoRouter> {
-  const RouterConfigProvider._()
+  RouterConfigProvider._()
     : super(
         from: null,
         argument: null,

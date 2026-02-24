@@ -12,16 +12,12 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final router = ref.watch(routerConfigProvider);
-
     return MaterialApp.router(
       title: 'Direct Link',
       debugShowCheckedModeBanner: false,
       theme: .light(useMaterial3: true),
       darkTheme: .dark(useMaterial3: true),
-      routerDelegate: router.routerDelegate,
-      routeInformationParser: router.routeInformationParser,
-      routeInformationProvider: router.routeInformationProvider,
+      routerConfig: ref.watch(routerConfigProvider),
     );
   }
 }

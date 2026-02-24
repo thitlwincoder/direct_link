@@ -23,10 +23,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-  http: ^1.5.0
-  brotli: ^0.6.0
-  crypto: ^3.0.6
   flutter_inappwebview: ^6.1.5
+  html: ^0.15.6
 
 dev_dependencies:
   flutter_test:

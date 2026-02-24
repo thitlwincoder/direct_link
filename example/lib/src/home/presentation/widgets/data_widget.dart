@@ -89,7 +89,7 @@ class _DataWidgetState extends State<DataWidget> {
               shrinkWrap: true,
               itemCount: links.keys.length,
               physics: const NeverScrollableScrollPhysics(),
-              separatorBuilder: (_, __) => const SizedBox(height: 10),
+              separatorBuilder: (_, _) => const SizedBox(height: 10),
               itemBuilder: (context, index) {
                 final e = links.keys.toList()[index];
 

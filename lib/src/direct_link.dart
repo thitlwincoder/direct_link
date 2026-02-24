@@ -21,10 +21,8 @@ abstract class DirectLink {
   /// Analyze [url] and return available media metadata and direct links.
   ///
   /// - [url]: The page URL to analyze for embedded or downloadable media.
-  /// - [timeout]: Optional timeout for network operations; implementations
-  ///   may choose to respect it or ignore it.
   ///
   /// Returns a [SiteModel] with metadata and `links`, or `null` if no
   /// media could be found or an error occurred.
-  Future<SiteModel?> check(String url, {Duration? timeout});
+  Future<SiteModel?> check(String url, {double? timeoutInterval});
 }
