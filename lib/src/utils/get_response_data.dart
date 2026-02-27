@@ -7,19 +7,6 @@ import 'package:html/parser.dart';
 
 /// Sends a POST request with a predefined form to the service and
 /// returns the decoded response body.
-///
-/// Parameters:
-/// - `url`: The target URL that will be sent as part of the form and
-///   incorporated into the `_s` token via `generateHash`.
-///
-/// Returns: A `Future<String>` that completes with the decoded
-/// response body (UTF-8) after brotli decompression.
-///
-/// Example:
-/// ```dart
-/// final data = await getResponseData('https://example.com/video');
-/// print(data);
-/// ```
 Future<SiteModel?> getResponseData(
   String url, {
   double? timeoutInterval,
@@ -33,8 +20,8 @@ Future<SiteModel?> getResponseData(
         mediaPlaybackRequiresUserGesture: false,
         javaScriptCanOpenWindowsAutomatically: true,
       ),
-      initialUrlRequest: URLRequest(
-        url: WebUri('https://en.savefrom.net/'),
+      initialUrlRequest: .new(
+        url: .new('https://savefrom.in.net/en9/'),
         timeoutInterval: timeoutInterval,
       ),
       onLoadStop: (controller, uri) async {
@@ -46,7 +33,7 @@ Future<SiteModel?> getResponseData(
         ''',
         );
 
-        var data = await Future.delayed(Duration(seconds: 10), () async {
+        var data = await Future.delayed(.new(seconds: 10), () async {
           var content = await controller.getHtml();
           return _parseContent(content);
         });
