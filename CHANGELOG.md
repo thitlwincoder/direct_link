@@ -1,6 +1,10 @@
+## 0.3.3
+
+- Change request url #[28](https://github.com/thitlwincoder/direct_link/issues/28)
+
 ## 0.3.2
 
-- Fix connection timed out issue #28
+- Fix connection timed out issue #[28](https://github.com/thitlwincoder/direct_link/issues/28)
 
 ## 0.3.1
 
