@@ -1,1 +1,1 @@
-export 'social_test.dart';
+void main() {}

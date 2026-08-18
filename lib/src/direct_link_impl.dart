@@ -1,6 +1,7 @@
 import 'dart:async';
 
-import 'package:direct_link/direct_link.dart';
+import 'package:direct_link/src/direct_link.dart';
+import 'package:direct_link/src/models/site_model.dart';
 import 'package:direct_link/src/utils/get_response_data.dart';
 
 /// Default implementation of [DirectLink].
@@ -16,7 +17,7 @@ class DirectLinkImpl implements DirectLink {
   /// Returns a [SiteModel] containing metadata and available `links`, or
   /// `null` when no media could be discovered.
   @override
-  Future<SiteModel?> check(String url, {double? timeoutInterval}) async {
+  Future<SiteModel?> check(String url, {double? timeoutInterval}) {
     return getResponseData(url, timeoutInterval: timeoutInterval);
   }
 }
