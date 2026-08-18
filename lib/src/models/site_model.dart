@@ -50,9 +50,8 @@ class Link {
   /// Optional content type or file extension (for example "mp4").
   final String? type;
 
-  /// Creates a [Link]. `quality` and `link` are required; `type` is
-  /// optional because it may not always be present in scraped data.
-  Link({required this.quality, required this.link, required this.type});
+  /// Creates a [Link].
+  Link({required this.quality, required this.link, this.type});
 
   /// Serializes this link into a JSON-compatible map.
   Map<String, dynamic> toJson() => {
